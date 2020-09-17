@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\QL_Nigus_Fenta_SSIS_Packages"
   ],
+  "SelectedNode": "\\QL_Nigus_Fenta_SSIS_Packages\\Pkg_Nigus_Fenta_LendingPad.dtsx",
   "PreviewInSolutionExplorer": false
 }
