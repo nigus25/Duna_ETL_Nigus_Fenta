@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="9/18/2020 8:20:17 PM"
@@ -23,13 +23,13 @@
       DTS:ObjectName="Salesforce Connection Manager">
       <DTS:ObjectData>
         <SalesforceConnectionManager
-          ConnectionString="InstanceType=Sandbox;AuthenticationType=AuthorizationCode;ServiceEndpoint=SOAP;ServiceUrl=https://test.salesforce.com/services/Soap/u/48.0;TokenPath=;ClientId=;RedirectUri=;CertificateThumbprint=;UserName=salesforce@dunallc.com.sandboxdev;ServiceTimeout=120;ProxyMode=NoProxy;ProxyServer=;ProxyServerPort=0;ProxyUsername=;RetryOnIntermittentErrors=True">
+          ConnectionString="InstanceType=Sandbox;AuthenticationType=AuthorizationCode;ServiceEndpoint=SOAP;ServiceUrl=https://test.salesforce.com/services/Soap/u/48.0;UserName=salesforce@dunallc.com.sandboxdev;ServiceTimeout=120;ProxyMode=NoProxy;ProxyServer=;ProxyServerPort=0;ProxyUsername=;RetryOnIntermittentErrors=True">
           <Password
             Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAurN731UvYfCLEUBCrqcjFkvze2xFKl/kNwSvr9s+MqwAAAAAOgAAAAAIAACAAAADX5IjiwwYNoNeEAA22OwEHtWDq1JhJ1rgARX0dJaDcZCAAAAC178cYKvWlS4VmdZbSQwpvWJm6OGU28494oQlV3fue60AAAABSM+s2KLa17Ms2QQB8ueZxvRJwTPTNi08f6KfOxffkwsvrh9qUKHzvPLCpsHPRnkSS+bbn2du30UlTW20N6nTu</Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABO4s8WW9XuRkpSQJ8kzo/1R7k/SDCUqvMdjpZ4EDafBAAAAAAOgAAAAAIAACAAAAB67HBZ42cWvSrfI5mF2CoCzC+Yg7erJUQ93fw7DXwCnyAAAAC7KCahFMJAc4LyxHqGY81L444URKcIJ9rpZlv+jZhM7kAAAAAEVDjjv5jJ9BDSu1a9ek0VVLm1GVOkIQbT5zQ7UB2sAWtSZzx38/HuE6Ldf1YRUeit8BB94MfZ/oeT97lHQmq3</Password>
           <SecurityToken
             Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAmm2zrs0ppdUgyqY4F+i/Eu3krj+okWazqXq1cNOhHXwAAAAAOgAAAAAIAACAAAADE1pyXRRvLHmzwrjajPzIrf0waO2J7Cml/xZsveaCmokAAAADMRuz3krLhLIZDTeP9y5ghHIMF9LP4OhWEo4dT1bA3pTNcBhWYwtTwBA5rhki46pPXNjaBqho33wTPKtjg8XZoQAAAAEsLxlrIHbLhCAL/OST/kahbdQiV1YV9+Rb16XD6HN3eB1Fi88qCc/BbxjHcq4R50R9lUkf4DezD9QUsZ3ZVgUs</SecurityToken>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAD2uv9+nf8dYatxXttTGzRr6fn95fmT1GUhuMaSaYIgewAAAAAOgAAAAAIAACAAAAAPLNbgOZVnjj4Q0k2x2/pd5taIXgOLP23fxHCOt5Yh6kAAAAD2GvDWufL+YEqbZ+E/KA2FBRw3iD/aP3xWzovht2+JYpOw99ZvSxzBIcWwyJ0YS9TE0ZvdlGqdh5S8fQyVQxlAQAAAAPd1TY7WzL+aioigJVUJZiv3qVmxZIXmccNqTCGtJ+n/544l/IJfH5iszBpCH3O0Eelc51gtigxkHT1fmhYuEU8</SecurityToken>
         </SalesforceConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -79,8 +79,7 @@
               contactInfo="KingswaySoft Inc.; http://www.kingswaysoft.com; support@kingswaysoft.com; Copyright (c) 2020 KingswaySoft Inc."
               description="Extract data from Salesforce."
               name="Salesforce Source"
-              usesDispositions="true"
-              version="1">
+              usesDispositions="true">
               <properties>
                 <property
                   dataType="System.Int32"
@@ -118,7 +117,7 @@
                   description="Specifies the output timezone for Salesforce datetime values."
                   expressionType="Notify"
                   name="OutputTimezone"
-                  typeConverter="KingswaySoft.IntegrationToolkit.Common.DescriptiveEnumTypeConverter`1[[KingswaySoft.IntegrationToolkit.Salesforce.SfdcSourceOutputTimezone">2</property>
+                  typeConverter="KingswaySoft.IntegrationToolkit.Salesforce.SfdcSourceOutputTimezone">2</property>
                 <property
                   dataType="System.String"
                   description="Specify the PK Chunking Header that helps with Bulk API data read performance."
