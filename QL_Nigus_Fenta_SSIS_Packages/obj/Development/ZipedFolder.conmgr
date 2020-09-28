@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ZipedFolder"
+  DTS:DTSID="{920C53C8-ABF7-41AC-90CF-98966E3ACB4D}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:FileUsageType="2"
+      DTS:ConnectionString="C:\QuicknLoan\ZipedFolder" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

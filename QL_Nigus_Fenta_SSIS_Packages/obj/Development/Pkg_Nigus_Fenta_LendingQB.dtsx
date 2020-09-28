@@ -7,12 +7,12 @@
   DTS:CreatorName="KING\Nigus"
   DTS:DTSID="{314553FB-0657-4F5F-8779-C5A7DE5182FD}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
   DTS:LocaleID="1033"
   DTS:ObjectName="Pkg_Nigus_Fenta_LendingQB"
   DTS:PackageType="5"
-  DTS:VersionBuild="95"
-  DTS:VersionGUID="{D8A134FB-0203-4580-A150-6F7BC5A02666}">
+  DTS:VersionBuild="116"
+  DTS:VersionGUID="{B235511A-8F5F-40D2-91AA-BD5A14AE30DC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -48,24 +48,12 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6612A518-E355-42C2-80E5-B2A4C2D1043A}"
-      DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT SourceName, Max(LastModifiedDate) as  LastModifiedDate from [dbo].[Stg_Nigus_Fenta_QL]&#xA;   Where  SourceName = 'LendingQB' Group By SourceName&quot;"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="varGetMaxLastModifiedDate">
-      <DTS:VariableValue
-        DTS:DataType="8">SELECT SourceName, Max(LastModifiedDate) as  LastModifiedDate from [dbo].[Stg_Nigus_Fenta_QL]
-   Where  SourceName = 'LendingQB' Group By SourceName</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{08CEE051-77BB-4C8D-B183-24B802F050BE}"
+      DTS:DTSID="{35B5DE6B-53EF-462A-ABE5-4EFE1C126701}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="varLastModifiedDate">
       <DTS:VariableValue
-        DTS:DataType="7">9/16/2020 8:30:00 PM</DTS:VariableValue>
+        DTS:DataType="7">9/22/2020 6:44:40 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -75,6 +63,18 @@
       DTS:ObjectName="varLoadDate">
       <DTS:VariableValue
         DTS:DataType="7">9/19/2020 1:46:49 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6440DE1-82D4-4179-9B10-A84994AB172A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT SourceName, MAX(LastModifiedDate) as MaxLastModifiedDate&#xA;FROM [dbo].[Stg_Nigus_Fenta_QL]&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varMaxLastModifiedDate">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT SourceName, MAX(LastModifiedDate) as MaxLastModifiedDate
+FROM [dbo].[Stg_Nigus_Fenta_QL]</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -103,7 +103,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="varRunTime">
       <DTS:VariableValue
-        DTS:DataType="7">9/20/2020 10:48:07 AM</DTS:VariableValue>
+        DTS:DataType="7">9/27/2020 1:45:51 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -157,7 +157,7 @@
       DTS:DTSID="{8B3717F4-6D88-4A38-9767-E77B05A79BFB}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="VarToemail">
+      DTS:ObjectName="VarToEmail">
       <DTS:VariableValue
         DTS:DataType="8">qletlteam@gmail.com</DTS:VariableValue>
     </DTS:Variable>
@@ -195,67 +195,22 @@
           </DTS:Variables>
           <DTS:Executables>
             <DTS:Executable
-              DTS:refId="Package\Data Flow Task.EventHandlers[OnError]\EST_Error_Log"
-              DTS:CreationName="Microsoft.ExecuteSQLTask"
-              DTS:Description="Execute SQL Task"
-              DTS:DTSID="{5CEBF656-0BD8-41A3-B1E1-C5912E0D7D88}"
-              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-              DTS:LocaleID="-1"
-              DTS:ObjectName="EST_Error_Log"
-              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-              <DTS:Variables />
-              <DTS:ObjectData>
-                <SQLTask:SqlTaskData
-                  SQLTask:Connection="{A8AAFEFD-F6DC-42B5-A511-213E613A7F10}"
-                  SQLTask:SqlStatementSource="Insert into [dbo].[Quicken_Loans_ETL_Error_Log]&#xA;     ( [PackageID]&#xA;      ,[PackageName]&#xA;      ,[SourceName]&#xA;      ,[LoadDate]&#xA;      ,[RunBy]&#xA;      ,[ErrorCode]&#xA;      ,[ErrorDescription])&#xA;&#x9;  Values(?,?,?,?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-              </DTS:ObjectData>
-            </DTS:Executable>
-            <DTS:Executable
-              DTS:refId="Package\Data Flow Task.EventHandlers[OnError]\ST_EmailNotification"
+              DTS:refId="Package\Data Flow Task.EventHandlers[OnError]\Email missingfile notification"
               DTS:CreationName="Microsoft.ScriptTask"
               DTS:Description="Script Task"
-              DTS:DTSID="{0B9577EC-E717-49C6-87BD-93499298A8A2}"
+              DTS:DTSID="{c5552bb5-48c8-40c7-95ba-2d064c043217}"
               DTS:ExecutableType="Microsoft.ScriptTask"
               DTS:LocaleID="-1"
-              DTS:ObjectName="ST_EmailNotification">
+              DTS:ObjectName="Email missingfile notification">
               <DTS:Variables />
               <DTS:ObjectData>
                 <ScriptProject
-                  Name="ST_51dca803e8584a58a2bac47dddae7b36"
+                  Name="ST_697b9fd7d69547fca21eef593b77bbeb"
                   VSTAMajorVersion="15"
                   VSTAMinorVersion="0"
                   Language="CSharp"
-                  ReadOnlyVariables="User::varFromEmail,User::varSubject,User::VarToemail">
-                  <ProjectItem
-                    Name="Properties\AssemblyInfo.cs"
-                    Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_51dca803e8584a58a2bac47dddae7b36")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_51dca803e8584a58a2bac47dddae7b36")]
-[assembly: AssemblyCopyright("Copyright @  2020")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                  ReadOnlyVariables="System::PackageName,System::StartTime,User::varBody,User::varFromEmail,User::varPassword,User::VarSMTPClient,User::varSmtpServerPort,User::varSubject,User::VarToEmail"
+                  ReadWriteVariables="System::ErrorCode,System::ErrorDescription">
                   <ProjectItem
                     Name="Properties\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -376,6 +331,121 @@ using System.Runtime.CompilerServices;
   </resheader>
 </root>]]></ProjectItem>
                   <ProjectItem
+                    Name="ST_697b9fd7d69547fca21eef593b77bbeb.csproj"
+                    Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B140DE6E-6082-47A1-A6EF-6DE5EBB946B4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_e1b202c48928497eaf96a0de7030a717</RootNamespace>
+    <AssemblyName>ST_697b9fd7d69547fca21eef593b77bbeb</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+                  <ProjectItem
+                    Name="Properties\Settings.Designer.cs"
+                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_e1b202c48928497eaf96a0de7030a717.Properties.Settings.get_Default():ST_e1b202c48928497eaf96a0de7030a717.Properties.Sett" +
+    "ings")]
+
+namespace ST_e1b202c48928497eaf96a0de7030a717.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+                  <ProjectItem
                     Name="ScriptMain.cs"
                     Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -391,9 +461,10 @@ using System;
 using System.Data;
 using Microsoft.SqlServer.Dts.Runtime;
 using System.Windows.Forms;
+using System.Net.Mail;
 #endregion
 
-namespace ST_51dca803e8584a58a2bac47dddae7b36
+namespace ST_e1b202c48928497eaf96a0de7030a717
 {
     /// <summary>
     /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
@@ -462,182 +533,117 @@ namespace ST_51dca803e8584a58a2bac47dddae7b36
         #endregion
 
 
-		/// <summary>
+        /// <summary>
         /// This method is called when this script task executes in the control flow.
         /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
         /// To open Help, press F1.
         /// </summary>
-		public void Main()
-		{
-			// TODO: Add your code here
-
-			Dts.TaskResult = (int)ScriptResults.Success;
-		}
-
-        #region ScriptResults declaration
-        /// <summary>
-        /// This enum provides a convenient shorthand within the scope of this class for setting the
-        /// result of the script.
-        /// 
-        /// This code was generated automatically.
-        /// </summary>
-        enum ScriptResults
+        public void Main()
+        //System::PackageName,System::StartTime,User::varFromEmail,User::varPassword,User::varSmtpClient,
+        //User::varSmtpServerPort,User::varSubject,User::varToEmail
         {
-            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
-            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
-        };
-        #endregion
+            //System::ErrorCode,System::ErrorDescription
 
-	}
+            //MailMessage email = new MailMessage();
+            //SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            // START
+            // System::PackageName,System::StartTime,User::VarFromEmail,User::varPassword,User::varSmtpClient,User::varSmtpServerPort,User::varSubject,User::VarToEmail
+            String SendMailFrom = Dts.Variables["User::VarFromEmail"].Value.ToString();
+            String SendMailTo = Dts.Variables["User::VarToEmail"].Value.ToString();
+            String SendMailSubject = Dts.Variables["User::varSubject"].Value.ToString();
+            //String SendMailBody = Dts.Variables["User::varBody"].Value.ToString();
+            String SendMailBody = Dts.Variables["System::PackageName"].Value.ToString() + " " + Dts.Variables["System::ErrorCode"].Value.ToString() + Dts.Variables["System::StartTime"].Value.ToString() + " " + Dts.Variables["System::ErrorDescription"].Value.ToString();
+            String SmtpClient = Dts.Variables["User::varSmtpClient"].Value.ToString();
+            String Password = Dts.Variables["User::varPassword"].Value.ToString();
+            String Pt = Dts.Variables["User::varSmtpServerPort"].Value.ToString();
+            int Port = int.Parse(Pt);
+            try
+            {
+                MailMessage email = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(SmtpClient);
+                // START
+                email.From = new MailAddress(SendMailFrom);
+                email.To.Add(SendMailTo);
+                email.Subject = SendMailSubject;
+                email.Body = SendMailBody;
+                //END
+                SmtpServer.Port = Port;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(SendMailFrom, Password);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(email);
+                MessageBox.Show("Email was Successfully Sent ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            Dts.TaskResult = (int)ScriptResults.Success;
+        }
+    }
+    #region ScriptResults declaration
+    /// <summary>
+    /// This enum provides a convenient shorthand within the scope of this class for setting the
+    /// result of the script.
+    ///
+    /// This code was generated automatically.
+    /// </summary>
+    enum ScriptResults
+    {
+        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+    };
+    #endregion
 }]]></ProjectItem>
                   <ProjectItem
                     Name="Project"
                     Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
   <msb:PropertyGroup>
+    <msb:CodeName>ST_697b9fd7d69547fca21eef593b77bbeb</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
-    <msb:CodeName>ST_51dca803e8584a58a2bac47dddae7b36</msb:CodeName>
-    <msb:DisplayName>ST_51dca803e8584a58a2bac47dddae7b36</msb:DisplayName>
-    <msb:ProjectId>{31414B72-F3D7-433D-8E1C-2B6EB5937518}</msb:ProjectId>
+    <msb:DisplayName>ST_697b9fd7d69547fca21eef593b77bbeb</msb:DisplayName>
+    <msb:ProjectId>{9600B6F3-CCE9-4F36-9109-538E187930C9}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
-    <msb:Project Include="ST_51dca803e8584a58a2bac47dddae7b36.csproj" />
+    <msb:Project Include="ST_697b9fd7d69547fca21eef593b77bbeb.csproj" />
+    <msb:File Include="Properties\Resources.resx" />
     <msb:File Include="Properties\Settings.settings" />
     <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
     <msb:File Include="Properties\Resources.Designer.cs" />
     <msb:File Include="Properties\Settings.Designer.cs" />
     <msb:File Include="ScriptMain.cs" />
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
                   <ProjectItem
-                    Name="Properties\Settings.Designer.cs"
-                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                    Name="Properties\AssemblyInfo.cs"
+                    Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_e1b202c48928497eaf96a0de7030a717")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_e1b202c48928497eaf96a0de7030a717")]
+[assembly: AssemblyCopyright("Copyright @  2020")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_51dca803e8584a58a2bac47dddae7b36.Properties.Settings.get_Default():ST_51dca803e8584a58a2bac47dddae7b36.Properties.Sett" +
-    "ings")]
-
-namespace ST_51dca803e8584a58a2bac47dddae7b36.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-                  <ProjectItem
-                    Name="ST_51dca803e8584a58a2bac47dddae7b36.csproj"
-                    Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{f27260d8-ce4c-4844-bf97-ef85d15d58bf}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ST_51dca803e8584a58a2bac47dddae7b36</RootNamespace>
-    <AssemblyName>ST_51dca803e8584a58a2bac47dddae7b36</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>.\bin\Debug\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugSymbols>false</DebugSymbols>
-    <Optimize>true</Optimize>
-    <OutputPath>.\bin\Release\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-         <Generator>ResXFileCodeGenerator</Generator>
-         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-             <AutoGen>True</AutoGen>
-         <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-         <Generator>SettingsSingleFileGenerator</Generator>
-         <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-         <AutoGen>True</AutoGen>
-         <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="ScriptMain.cs">
-         <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <!-- Include the build rules for a C# project.-->
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
-        <ProjectProperties HostName="ScriptTask"
-                           HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}"
-                           ApplicationType="usd"
-                           Language="cs"
-                           TemplatesPath=""
-                           DebugInfoCommandLine=""
-                           DebugInfoWorkingDir=""
-                           IconImageList=""/>
-        <Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex="">
-        </Host>
-        <ProjectClient>
-            <HostIdentifier>SSIS_ST150</HostIdentifier>
-        </ProjectClient>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
-</Project>]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
                   <ProjectItem
                     Name="Properties\Settings.settings"
                     Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -658,14 +664,14 @@ namespace ST_51dca803e8584a58a2bac47dddae7b36.Properties {
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_51dca803e8584a58a2bac47dddae7b36.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_e1b202c48928497eaf96a0de7030a717.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
     "rceManager")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_51dca803e8584a58a2bac47dddae7b36.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_e1b202c48928497eaf96a0de7030a717.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
     "fo")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_51dca803e8584a58a2bac47dddae7b36.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_e1b202c48928497eaf96a0de7030a717.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
     "):Void")]
 
-namespace ST_51dca803e8584a58a2bac47dddae7b36.Properties {
+namespace ST_e1b202c48928497eaf96a0de7030a717.Properties {
     
     
     /// <summary>
@@ -693,7 +699,7 @@ namespace ST_51dca803e8584a58a2bac47dddae7b36.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if ((resourceMan == null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_51dca803e8584a58a2bac47dddae7b36.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_e1b202c48928497eaf96a0de7030a717.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -716,105 +722,132 @@ namespace ST_51dca803e8584a58a2bac47dddae7b36.Properties {
     }
 }]]></ProjectItem>
                   <BinaryItem
-                    Name="ST_51dca803e8584a58a2bac47dddae7b36.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    Name="ST_697b9fd7d69547fca21eef593b77bbeb.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDACnFZl8AAAAAAAAAAOAAIiALATAAAA4AAAAIAAAAAAAAdiwA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAA6Jal8AAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAANjMA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAACQsAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOQyAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAfAwAAAAgAAAADgAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAQAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAFgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABY
-LAAAAAAAAEgAAAACAAUAxCAAAKgKAAABAAAAAAAAAGwrAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAADYCKBAAAAoWbxEAAAoqHgIoEgAACioeAigTAAAKKq5+AQAA
-BC0ecgEAAHDQAwAAAigUAAAKbxUAAApzFgAACoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4D
-AAAEKh4CKBcAAAoqLnMIAAAGgAMAAAQqQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBs
-AAAAgAMAACN+AADsAwAA7AQAACNTdHJpbmdzAAAAANgIAAB0AAAAI1VTAEwJAAAQAAAAI0dVSUQA
-AABcCQAATAEAACNCbG9iAAAAAAAAAAIAAAFXHaABCQMAAAD6ATMAFgAAAQAAABsAAAAFAAAABgAA
-AAkAAAABAAAAFwAAAAIAAAAQAAAAAgAAAAMAAAAEAAAAAQAAAAMAAAABAAAAAQAAAAAAGgMBAAAA
-AAAGAN0B4QMGAGwC4QMGACkBzgMPAFUEAAAGAFYBjwMGAMABjwMGAKEBjwMGAFMCjwMGAP0BjwMG
-ABYCjwMGAG0BjwMGAIgBkAIKADECyQIKAKgAyQIGAEkDQgMGAAwBzgMGALoEQgMGALEDAQQGAKED
-egMOANwABAMOAD0BBAMOAMQAZQMGAPEA4QMKAPICyQIGAHMAQgMGAE8AQgMGAOAEjwMAAAAAJQAA
-AAAAAQABAAEAEABaAwEAOQABAAEAAAAQAAgEZARFAAEAAwAAARAAkwRkBFkAAwAHAAMBAACsBAAA
-PQAEAAoAEQBOA08AEQCYAFMAEQA/AFcABgYuAFsAVoCcBF4AVoB4AF4AUCAAAAAAhgBgAwYAAQBe
-IAAAAACGGMEDBgABAGYgAAAAAIMYwQMGAAEAbiAAAAAAkwitA2IAAQCaIAAAAACTCIAAZwABAKEg
-AAAAAJMIjABsAAEAqSAAAAAAlgjBBHIAAgCwIAAAAACGGMEDBgACALggAAAAAJEYxwN3AAIAAAAB
-AIoCCQDBAwEAEQDBAwYAGQDBAwoAKQDBAxAAMQDBAxAAOQDBAxAAQQDBAxAASQDBAxAAUQDBAxAA
-WQDBAxAAYQDBAxAAaQDBAwYAgQDBAwYAqQDBAxUAuQDBAwYAcQCkBBsAwQDNBAEAcQDBAwYAiQDB
-AwYAyQBhACAAyQDcBCcAkQDBAywAsQDBAwYACAAUAEUACAAYAEoAKQBzALIALgALAIoALgATAJMA
-LgAbALIALgAjALsALgArAOQALgAzAOQALgA7AOQALgBDALsALgBLAOoALgBTAOQALgBbAAEBQwBj
-AEoASQBzALIAYQB7AEoAYwBrAEoAAwABAAQAAwAAALEDewAAAKAAgAAAAMUEhQACAAQAAwACAAUA
-BQABAAYABQACAAcABwAEgAAAAQAAAI8ddKEAAAAAAAABAAAABAAAAAAAAAAAAAAAMwA2AAAAAAAP
-AAAAAAAAAAAAAAA8AKoCAAAAAAQAAAAAAAAAAAAAADMAQgMAAAAAAAAAAAEAAAASBAAABQACAAAA
-AAAAU1RfNTFkY2E4MDNlODU4NGE1OGEyYmFjNDdkZGRhZTdiMzYAPE1vZHVsZT4AdmFsdWVfXwBt
-c2NvcmxpYgBkZWZhdWx0SW5zdGFuY2UAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5k
-bGUAVHlwZQBGYWlsdXJlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBW
-U1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UARWRpdG9y
-QnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2Vy
-Q29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0
-ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdl
-dEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1i
-bHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFz
-c2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2Ny
-aXB0VGFza0VudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRp
-bWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcA
-TWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRh
-c2tzLlNjcmlwdFRhc2sAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNU
-XzUxZGNhODAzZTg1ODRhNThhMmJhYzQ3ZGRkYWU3YjM2LmRsbABTeXN0ZW0ARW51bQByZXNvdXJj
-ZU1hbgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9u
-AFN5c3RlbS5SZWZsZWN0aW9uAEN1bHR1cmVJbmZvAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0b3IA
-LmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2Vz
-AFN5c3RlbS5SZXNvdXJjZXMAU1RfNTFkY2E4MDNlODU4NGE1OGEyYmFjNDdkZGRhZTdiMzYuUHJv
-cGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNUXzUxZGNhODAzZTg1
-ODRhNThhMmJhYzQ3ZGRkYWU3YjM2LlByb3BlcnRpZXMAU2V0dGluZ3MAU3VjY2VzcwBnZXRfRHRz
-AFNjcmlwdFJlc3VsdHMAT2JqZWN0AGdldF9EZWZhdWx0AHNldF9UYXNrUmVzdWx0AGdldF9Bc3Nl
-bWJseQAAAAAAcVMAVABfADUAMQBkAGMAYQA4ADAAMwBlADgANQA4ADQAYQA1ADgAYQAyAGIAYQBj
-ADQANwBkAGQAZABhAGUANwBiADMANgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUA
-cgBjAGUAcwAAAN4cYJU/yHpIvuyVJY9B1NcABCABAQgDIAABBSABARERBCABAQ4FIAEBEVEEIAAS
-YQYAARJlEWkEIAASbQYgAgEOEm0It3pcVhk04IkIiYRdzYCAzJEEAAAAAAQBAAAAAwYSSQMGEk0D
-BhIQAgYIAwYRFAQAABJJBAAAEk0FAAEBEk0EAAASEAMAAAEECAASSQQIABJNBAgAEhAIAQAIAAAA
-AAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEAI1NUXzUxZGNhODAz
-ZTg1ODRhNThhMmJhYzQ3ZGRkYWU3YjM2AAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMjAAAEkB
-ABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5F
-VCBGcmFtZXdvcmsgNC43ALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJj
-ZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJs
-aWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291
-cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABMLAAAAAAAAAAAAABmLAAAACAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAWCwAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUA
-IAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAPBMAAAAgAAAAFAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAY
+MwAAAAAAAEgAAAACAAUAxCIAAGgPAAABAAAAAAAAACwyAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBQDvAQAAAQAAEQIoEAAACm8RAAAKcgEAAHBvEgAACm8T
+AAAKbxQAAAoKAigQAAAKbxEAAApyJwAAcG8SAAAKbxMAAApvFAAACgsCKBAAAApvEQAACnJJAABw
+bxIAAApvEwAACm8UAAAKDByNHQAAASUWAigQAAAKbxEAAApyawAAcG8SAAAKbxMAAApvFAAACqIl
+F3KTAABwoiUYAigQAAAKbxEAAApylwAAcG8SAAAKbxMAAApvFAAACqIlGQIoEAAACm8RAAAKcrsA
+AHBvEgAACm8TAAAKbxQAAAqiJRpykwAAcKIlGwIoEAAACm8RAAAKct8AAHBvEgAACm8TAAAKbxQA
+AAqiKBUAAAoNAigQAAAKbxEAAApyEQEAcG8SAAAKbxMAAApvFAAAChMEAigQAAAKbxEAAApyOQEA
+cG8SAAAKbxMAAApvFAAAChMFAigQAAAKbxEAAApyXQEAcG8SAAAKbxMAAApvFAAACigWAAAKEwZz
+FwAAChMHEQRzGAAAChEHBnMZAAAKbxoAAAoRB28bAAAKB28cAAAKEQcIbx0AAAoRBwlvHgAACiUR
+Bm8fAAAKJQYRBXMgAAAKbyEAAAolF28iAAAKEQdvIwAACnKNAQBwKCQAAAom3g1vFAAACigkAAAK
+Jt4AAigQAAAKFm8lAAAKKgABEAAAAABsAWnVAQ0QAAABHgIoJgAACioeAignAAAKKq5+BAAABC0e
+cscBAHDQBAAAAigoAAAKbykAAApzKgAACoAEAAAEfgQAAAQqGn4FAAAEKh4CgAUAAAQqGn4GAAAE
+Kh4CKCsAAAoqLnMIAAAGgAYAAAQqAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwA
+AABsBAAAI34AANgEAACcBgAAI1N0cmluZ3MAAAAAdAsAADwCAAAjVVMAsA0AABAAAAAjR1VJRAAA
+AMANAACoAQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAQAAAPoBMwAWAAABAAAAKAAAAAUAAAAGAAAA
+CQAAAAEAAAArAAAAAgAAABAAAAABAAAAAgAAAAMAAAAEAAAAAQAAAAUAAAABAAAAAADcAwEAAAAA
+AAYAagLqBAYA+QLqBAYAtgHXBA8AXgUAAAYA4wFxBAYATQJxBAYALgJxBAYA4AJxBAYAigJxBAYA
+owJxBAYA+gFxBAYAFQInAwoAvgJpAwoALwFpAw4AoQDMAwYAmQQbBAYAKwQbBAYAmQHXBAYACQYb
+BAYAugQKBQYAqgRcBA4AaQG2Aw4AygG2Aw4ASwFHBAYAfgHqBAoApANpAxIAoAXaABIArQDaAAYA
+QwMbBAYAAQAbBA4ATwbMAw4A4AXMAw4AgwTMAw4AkgMcBg4AYwYcBhYAewbDBRYAMwbDBQYA+gAb
+BAYAtgAbBAYAkwZxBAAAAAArAAAAAAABAAEAAQAQADwEBwA5AAEAAQAAAQAA9AUHAEUAAQADAAAA
+EAARBW0FTQAEAAMAAAEQAKoFbQVhAAYABwAGBlMAqQBWgNgFrABWgP8ArAARADAEsAARAB8BtAAR
+AJEAuABQIAAAAACGAEIEBgABAFwiAAAAAIYYygQGAAEAZCIAAAAAgxjKBAYAAQBsIgAAAACTCLYE
+vAABAJgiAAAAAJMIBwHBAAEAnyIAAAAAkwgTAcYAAQCnIgAAAACWCCcGzAACAK4iAAAAAIYYygQG
+AAIAtiIAAAAAkRjQBNEAAgAAAAEAIQMJAMoEAQARAMoEBgAZAMoECgApAMoEEAAxAMoEEAA5AMoE
+EABBAMoEEABJAMoEEABRAMoEEABZAMoEEABhAMoEEABpAMoEBgCRAMoEBgC5AMoEFQDJAMoEBgBx
+AOwFJwDRAJwFLADZABIEMQDhABcDNwCZAEEDOwDpAAIGPwDxAGMBRQB5AMoEBgD5AMoEEAABAcoE
+EAB5ACIESgB5AKMEUQAJAYgAEAB5ABAGEAB5AIYGEAD5AFoGAQARAcoEVwD5ALMFXQD5AAQEZAD5
+AIwAaQAhAXYGbwDRAEAGAQBxAMoEBgCZAMoEBgAxAcgAdgAxAY8GfwChAMoEhQDBAMoEBgAIAAgA
+nwAIAAwApAApAHMADAEuAAsA5AAuABMA7QAuABsADAEuACMAFQEuACsAPgEuADMAPgEuADsAPgEu
+AEMAFQEuAEsARAEuAFMAPgEuAFsAWwFDAGMApABJAHMADAGDAGsApADBAHsApAAbAAQAAQAFAAMA
+AAC6BNUAAAAnAdoAAAArBt8AAgAEAAMAAgAFAAUAAQAGAAUAAgAHAAcABIAAAAEAAACSHSeJAAAA
+AAAAWwAAAAQAAAAAAAAAAAAAAI0AfwAAAAAADwAAAAAAAAAAAAAAlgBKAwAAAAAEAAAAAAAAAAAA
+AACNABsEAAAAAA8AAAAAAAAAAAAAAJYANAAAAAAABAAAAAAAAAAAAAAAjQDDBQAAAAAAAAAAAQAA
+ABsFAAAAAAAAAEludDMyAFNUX2UxYjIwMmM0ODkyODQ5N2VhZjk2YTBkZTcwMzBhNzE3ADxNb2R1
+bGU+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuTWFuYWdlZERUUwB2YWx1ZV9fAFNUXzY5N2I5ZmQ3ZDY5
+NTQ3ZmNhMjFlZWY1OTNiNzdiYmViAG1zY29ybGliAEFkZABTZW5kAGRlZmF1bHRJbnN0YW5jZQBN
+YWlsTWVzc2FnZQBWYXJpYWJsZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBN
+aWNyb3NvZnQuU3FsU2VydmVyLkR0cy5SdW50aW1lAFR5cGUARmFpbHVyZQBnZXRfQ3VsdHVyZQBz
+ZXRfQ3VsdHVyZQByZXNvdXJjZUN1bHR1cmUAVlNUQVJUU2NyaXB0T2JqZWN0TW9kZWxCYXNlAEFw
+cGxpY2F0aW9uU2V0dGluZ3NCYXNlAFBhcnNlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVy
+R2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJs
+ZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0
+ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNz
+ZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUA
+Q29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUA
+QXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmli
+dXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0
+ZQBnZXRfVmFsdWUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBUb1N0cmluZwBNaWNy
+b3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuVGFza3Mu
+U2NyaXB0VGFzawBOZXR3b3JrQ3JlZGVudGlhbABTY3JpcHRPYmplY3RNb2RlbABTeXN0ZW0uQ29t
+cG9uZW50TW9kZWwAU3lzdGVtLk5ldC5NYWlsAFNUXzY5N2I5ZmQ3ZDY5NTQ3ZmNhMjFlZWY1OTNi
+NzdiYmViLmRsbABzZXRfRW5hYmxlU3NsAGdldF9JdGVtAFN5c3RlbQBzZXRfRnJvbQBFbnVtAHJl
+c291cmNlTWFuAFNjcmlwdE1haW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6
+YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24ATWFpbEFkZHJlc3NDb2xsZWN0aW9uAEV4Y2VwdGlvbgBn
+ZXRfVG8AQ3VsdHVyZUluZm8AZ2V0X1Jlc291cmNlTWFuYWdlcgAuY3RvcgAuY2N0b3IAU3lzdGVt
+LkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291
+cmNlcwBTVF9lMWIyMDJjNDg5Mjg0OTdlYWY5NmEwZGU3MDMwYTcxNy5Qcm9wZXJ0aWVzLlJlc291
+cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU1RfZTFiMjAyYzQ4OTI4NDk3ZWFmOTZhMGRl
+NzAzMGE3MTcuUHJvcGVydGllcwBnZXRfVmFyaWFibGVzAFNldHRpbmdzAHNldF9DcmVkZW50aWFs
+cwBTeXN0ZW0uV2luZG93cy5Gb3JtcwBTdWNjZXNzAE1haWxBZGRyZXNzAGdldF9EdHMAU2NyaXB0
+UmVzdWx0cwBDb25jYXQAT2JqZWN0AHNldF9TdWJqZWN0AFN5c3RlbS5OZXQAZ2V0X0RlZmF1bHQA
+RGlhbG9nUmVzdWx0AHNldF9UYXNrUmVzdWx0AFNtdHBDbGllbnQAc2V0X1BvcnQASUNyZWRlbnRp
+YWxzQnlIb3N0AFNob3cATWVzc2FnZUJveABzZXRfQm9keQBnZXRfQXNzZW1ibHkAACVVAHMAZQBy
+ADoAOgBWAGEAcgBGAHIAbwBtAEUAbQBhAGkAbAAAIVUAcwBlAHIAOgA6AFYAYQByAFQAbwBFAG0A
+YQBpAGwAACFVAHMAZQByADoAOgB2AGEAcgBTAHUAYgBqAGUAYwB0AAAnUwB5AHMAdABlAG0AOgA6
+AFAAYQBjAGsAYQBnAGUATgBhAG0AZQAAAyAAACNTAHkAcwB0AGUAbQA6ADoARQByAHIAbwByAEMA
+bwBkAGUAACNTAHkAcwB0AGUAbQA6ADoAUwB0AGEAcgB0AFQAaQBtAGUAADFTAHkAcwB0AGUAbQA6
+ADoARQByAHIAbwByAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAJ1UAcwBlAHIAOgA6AHYAYQByAFMA
+bQB0AHAAQwBsAGkAZQBuAHQAACNVAHMAZQByADoAOgB2AGEAcgBQAGEAcwBzAHcAbwByAGQAAC9V
+AHMAZQByADoAOgB2AGEAcgBTAG0AdABwAFMAZQByAHYAZQByAFAAbwByAHQAADlFAG0AYQBpAGwA
+IAB3AGEAcwAgAFMAdQBjAGMAZQBzAHMAZgB1AGwAbAB5ACAAUwBlAG4AdAAgAABxUwBUAF8AZQAx
+AGIAMgAwADIAYwA0ADgAOQAyADgANAA5ADcAZQBhAGYAOQA2AGEAMABkAGUANwAwADMAMABhADcA
+MQA3AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAACJuzdViWVD
+SpAmxMQIQ1xCAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFZCwcIDg4ODg4OCBI9BCAAEmkEIAAS
+bQUgARJxHAMgABwDIAAOBQABDh0OBAABCA4GIAEBEoCBBSAAEoCFBSACAQ4OBiABARKAjQQgAQEC
+BSABARI9BgABEYCVDggAARKAmRGAnQUgABKAoQcgAgEOEoChCLd6XFYZNOCJCImEXc2AgMyRBAAA
+AAAEAQAAAAIGCAMGEQwDBhJRAwYSVQMGEhQEAAASUQQAABJVBQABARJVBAAAEhQDAAABBAgAElEE
+CAASVQQIABIUCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAA
+ACgBACNTVF9lMWIyMDJjNDg5Mjg0OTdlYWY5NmEwZGU3MDMwYTcxNwAABQEAAAAAFgEAEUNvcHly
+aWdodCBAICAyMDIwAABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcBAFQOFEZyYW1ld29y
+a0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNwAAALQAAADOyu++AQAAAJEAAABsU3lzdGVt
+LlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3Vs
+dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNv
+dXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAAAMMwAAAAAAAAAA
+AAAmMwAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGDMAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBt
+c2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
+SAAAAFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
+AAAAvQTv/gAAAQAAAAEAJ4mSHQAAAQAniZIdPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
+AAAAAAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAA
+MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBu
+AHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAA
+AABTAFQAXwBlADEAYgAyADAAMgBjADQAOAA5ADIAOAA0ADkANwBlAGEAZgA5ADYAYQAwAGQAZQA3
+ADAAMwAwAGEANwAxADcAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
+NwA1ADcAMAAuADMANQAxADEAMQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABT
+AFQAXwA2ADkANwBiADkAZgBkADcAZAA2ADkANQA0ADcAZgBjAGEAMgAxAGUAZQBmADUAOQAzAGIA
+NwA3AGIAYgBlAGIALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAA
+AEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABUAHIA
+YQBkAGUAbQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBh
+AG0AZQAAAFMAVABfADYAOQA3AGIAOQBmAGQANwBkADYAOQA1ADQANwBmAGMAYQAyADEAZQBlAGYA
+NQA5ADMAYgA3ADcAYgBiAGUAYgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBl
+AAAAAABTAFQAXwBlADEAYgAyADAAMgBjADQAOAA5ADIAOAA0ADkANwBlAGEAZgA5ADYAYQAwAGQA
+ZQA3ADAAMwAwAGEANwAxADcAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAx
+AC4AMAAuADcANQA3ADAALgAzADUAMQAxADEAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYA
+ZQByAHMAaQBvAG4AAAAxAC4AMAAuADcANQA3ADAALgAzADUAMQAxADEAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAA
-AAAASAAAAFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYA
-TwAAAAAAvQTv/gAAAQAAAAEAdKGPHQAAAQB0oY8dPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAA
-AEQAAAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkA
-bwBuAAAAAAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAw
-ADAAMAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAA
-YQBuAHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBu
-AAAAAABTAFQAXwA1ADEAZABjAGEAOAAwADMAZQA4ADUAOAA0AGEANQA4AGEAMgBiAGEAYwA0ADcA
-ZABkAGQAYQBlADcAYgAzADYAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAw
-AC4ANwA1ADYANwAuADQAMQAzADMAMgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUA
-AABTAFQAXwA1ADEAZABjAGEAOAAwADMAZQA4ADUAOAA0AGEANQA4AGEAMgBiAGEAYwA0ADcAZABk
-AGQAYQBlADcAYgAzADYALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgA
-dAAAAEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABU
-AHIAYQBkAGUAbQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUA
-bgBhAG0AZQAAAFMAVABfADUAMQBkAGMAYQA4ADAAMwBlADgANQA4ADQAYQA1ADgAYQAyAGIAYQBj
-ADQANwBkAGQAZABhAGUANwBiADMANgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEA
-bQBlAAAAAABTAFQAXwA1ADEAZABjAGEAOAAwADMAZQA4ADUAOAA0AGEANQA4AGEAMgBiAGEAYwA0
-ADcAZABkAGQAYQBlADcAYgAzADYAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4A
-AAAxAC4AMAAuADcANQA2ADcALgA0ADEAMwAzADIAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAg
-AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADcANQA2ADcALgA0ADEAMwAzADIAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAMAAAAeDwA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAODMAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -823,8 +856,67 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                 </ScriptProject>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Data Flow Task.EventHandlers[OnError]\EST_Error_Log"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{5CEBF656-0BD8-41A3-B1E1-C5912E0D7D88}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EST_Error_Log"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{A8AAFEFD-F6DC-42B5-A511-213E613A7F10}"
+                  SQLTask:SqlStatementSource="Insert into [dbo].[Quicken_Loans_ETL_Error_Log]&#xA;     ( [PackageID]&#xA;      ,[PackageName]&#xA;      ,[SourceName]&#xA;      ,[LoadDate]&#xA;      ,[RunBy]&#xA;      ,[ErrorCode]&#xA;      ,[ErrorDescription])&#xA;&#x9;  Values(?,?,?,?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::PackageID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="72"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::varSourceName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="User::varTimeStamp"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="7"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="4"
+                    SQLTask:DtsVariableName="System::MachineName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="5"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="6"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -832,11 +924,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Data Flow Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
               DTS:CreationName=""
-              DTS:DTSID="{038DD0BE-E28F-4B36-B65A-7EF795756557}"
+              DTS:DTSID="{6E41873B-DD31-4F2E-9CF8-70327FDE33C3}"
               DTS:From="Package\Data Flow Task.EventHandlers[OnError]\EST_Error_Log"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
-              DTS:To="Package\Data Flow Task.EventHandlers[OnError]\ST_EmailNotification" />
+              DTS:To="Package\Data Flow Task.EventHandlers[OnError]\Email missingfile notification" />
           </DTS:PrecedenceConstraints>
         </DTS:EventHandler>
       </DTS:EventHandlers>
@@ -2789,11 +2881,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column_IC.Inputs[Derived Column Input].Columns[Insurance_Company]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Insurance_Company"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[Insurance_Company]" />
+                      refId="Package\Data Flow Task\Derived Column_IC.Inputs[Derived Column Input].Columns[InsuranceCompany]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="128"
+                      cachedName="InsuranceCompany"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[InsuranceCompany]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -2821,13 +2914,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_STR,128,1252)([ISNULL](#{Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[Insurance_Company]}) ? "Dunatek" : #{Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[Insurance_Company]})</property>
+                          name="Expression">(DT_STR,128,1252)([ISNULL](#{Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[InsuranceCompany]}) ? "Dunatek" : #{Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[InsuranceCompany]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_STR,128,1252)(ISNULL(Insurance_Company) ? "Dunatek" : Insurance_Company)</property>
+                          name="FriendlyExpression">(DT_STR,128,1252)(ISNULL(InsuranceCompany) ? "Dunatek" : InsuranceCompany)</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2885,7 +2978,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   dataType="System.String"
                   description="Specifies the name of the reference table or view against which to match incoming records."
                   name="ReferenceTableName"
-                  state="escaped">_x005B_dbo_x005D_._x005B_MortgageInsuranceCompanyCrossWalk1_x0020__x0028_1_x0029__x005D_</property>
+                  state="escaped">_x005B_dbo_x005D_._x005B_Stg_Nigus_Fenta_QL_x005D_</property>
                 <property
                   dataType="System.Int32"
                   description="Indicates whether to drop an existing fuzzy-match index table if transformation is configured to generate a new table and a table with the same name already exists."
@@ -2911,7 +3004,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   dataType="System.String"
                   description="Specifies the metadata of the reference table in XML format."
                   name="ReferenceMetadataXml"
-                  state="escaped">_x003C_referenceMetadata_x003E__x003C_referenceColumns_x003E__x003C_referenceColumn_x0020_name_x003D__x0022_MortgageInsuranceCompanyID_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_50_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_MortgageInsuranceCompany_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_Insurance_Company_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_50_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C__x002F_referenceColumns_x003E__x003C__x002F_referenceMetadata_x003E__x000D__x000A_</property>
+                  state="escaped">_x003C_referenceMetadata_x003E__x003C_referenceColumns_x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ActualClosingDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_AmortizationType_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_AnnualPercentageRate_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ApplicationDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ApplicationReturnedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ApplicationStartedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_AppraisedValue_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ApprovalDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ApprovalStatus_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrAddress_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_159_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrBirthDate_x0022__x0020_dataType_x003D__x0022_DT_DBDATE_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrCity_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrEmailAddress_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_100_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrFirstName_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_50_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrGender_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_1_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrLastName_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_50_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrNoYearsOnJob_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_24_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrState_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrTotalIncome_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_26_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BorrZip_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_BottomQualificationRatios_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_Channel_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_10_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CloserFirstName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CloserFullName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CloserLastName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ClosingDisclosureRecievedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CombinedLoanToValueRatio_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ConditionalApprovalDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ConditionsReceivedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CreditPullDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CurrentMilestone_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_CurrentMilestoneTrackingDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DenialDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DisbursementDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DocumentPreparedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DocumentResubmittedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DocumentReviewedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DocumentShippingDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DocumentSigningDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_DocumentSubmittalDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_EstimatedLoanClosingDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_FinalDocumentDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_FundedTier_x0022__x0020_dataType_x003D__x0022_DT_I4_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_FinallCreditScore_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_24_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_FundedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_HouseOnSaleState_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_HouseOnSaleStreet_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_159_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_HouseOnSaleZip_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_InitialClosingDisclosureSentDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_InitialDisclosureProvidedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_InitialLoanEstimateDueDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_InitialLoanEstimateSentDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_InterestRate_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_IntialLoanAmount_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_IsBorrSelfEmployeedFlag_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_IsConstructionLoan_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LastLoadDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LastModifiedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LeadDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LeadId_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_132_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LeadSource_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_255_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LeadSourceType_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_255_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoadBy_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoadDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanExpirationDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanID_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_72_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanInformationDocumentDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanOfficerEmail_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_100_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanOfficerFirstName_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_100_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanOfficerFullName_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_101_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanOfficerLastName_x0022__x0020_dataType_x003D__x0022_DT_WSTR_x0022__x0020_length_x003D__x0022_100_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanProgram_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanPurpose_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanSetupDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanStatus_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanStatusActionDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanTerm_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanToValueRatio_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LoanType_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LockDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_LockExpireDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_MarketSource_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_7_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_MilestoneStatus_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_MortgageInsuranceCompany_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_Net_Buy_Price_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_OfficeID_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_100_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_OriginationFee_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_27_x0022__x0020_scale_x003D__x0022_13_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ProcessingDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ProcessorFirstName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ProcessorFullName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_ProcessorLastName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_PropertyOccupancyType_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_QAFailDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_QAStatus_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_SourceName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_TopQualificationRatios_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_TotalFees_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_27_x0022__x0020_scale_x003D__x0022_13_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_TotalLoanAmt_x0022__x0020_dataType_x003D__x0022_DT_NUMERIC_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_23_x0022__x0020_scale_x003D__x0022_10_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_UnderwriterFirstName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_UnderwriterFullName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_UnderwriterLastName_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_UnderwriterRiskAssess_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_UnderwritingReceivedDate_x0022__x0020_dataType_x003D__x0022_DT_DBTIMESTAMP_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_InsuranceCompany_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_128_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C__x002F_referenceColumns_x003E__x003C__x002F_referenceMetadata_x003E__x000D__x000A_</property>
                 <property
                   dataType="System.Boolean"
                   description="If true, each input record will be directly compared against EVERY record in the reference table.  This may produce slightly better results, but will be extremely slow unless the number of records in the reference table is very small.  Note that the entire reference table will be loaded into main memory if this option is enabled.  This option is primarily intended for debugging purposes and should be used with care."
@@ -9780,19 +9873,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[Insurance_Company]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[Insurance_Company]"
-                      name="Insurance_Company">
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[InsuranceCompany]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[InsuranceCompany]"
+                      name="InsuranceCompany">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the reference table column that is copied to the output for each match result."
                           name="CopyFromReferenceColumn"
-                          state="escaped">Insurance_Company</property>
+                          state="escaped">InsuranceCompany</property>
                         <property
-                          containsID="true"
                           dataType="System.Null"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
                           name="SourceInputColumnLineageID" />
@@ -12618,14 +12711,6 @@ where [refTable].[MarketSourceCode] = ?</property>
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnderwritingReceivedDate]"
                       lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[UnderwrittingReceivedDate]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MarketSourceName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="MarketSourceName"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MarketSourceName]"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[MarketSourceName]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[C_InsuranceCompany]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -13167,12 +13252,6 @@ where [refTable].[MarketSourceCode] = ?</property>
                       dataType="dbTimeStamp"
                       name="UnderwritingReceivedDate" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MarketSourceName]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      name="MarketSourceName" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsuranceCompany]"
                       codePage="1252"
                       dataType="str"
@@ -13340,6 +13419,7 @@ where [refTable].[MarketSourceCode] = ?</property>
       DTS:refId="Package\EST_MaxLastModifiedDate"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{4AE51742-2CA2-45FC-8CC3-9E0911E42810}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -14047,11 +14127,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CA0E116B-E56A-46CD-83C6-35E3AC111DE3}"
-          SQLTask:SqlStatementSource="select max (Lastmodifieddate) as maxlastmodifieddate from stg_Nigus_Fenta_QL"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::varMaxLastModifiedDate"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
-            SQLTask:ResultName="0"
+            SQLTask:ResultName="SourceName"
+            SQLTask:DtsVariableName="User::varSourceName" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastModifiedDate"
             SQLTask:DtsVariableName="User::varLastModifiedDate" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::varSourceName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -14059,6 +14149,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:refId="Package\Execute SQL Task_DeleteLendingQB_STG"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{98463058-8ACE-4616-A5A0-4F0ED4F2359D}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -14069,8 +14160,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CA0E116B-E56A-46CD-83C6-35E3AC111DE3}"
-          SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::varDeleteLendigQBtable" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="Delete From [dbo].[Stg_Nigus_Fenta_QL]&#xA;Where sourceName = 'LendingQB'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::varDeleteLendigQBtable"
@@ -14085,11 +14175,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{385E632C-DAE0-4ED1-904E-29A790CBA174}"
-      DTS:From="Package\EST_ETL_Log"
+      DTS:DTSID="{9ACBEE14-10CE-4D54-B11B-7CBF4CD2988E}"
+      DTS:From="Package\EST_MaxLastModifiedDate"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\EST_MaxLastModifiedDate" />
+      DTS:To="Package\Execute SQL Task_DeleteLendingQB_STG" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
@@ -14232,45 +14322,45 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <NodeLayout
           Size="152,42.6666666666667"
           Id="Package\Data Flow Task"
-          TopLeft="112.374998407438,132.89999772191" />
+          TopLeft="275.499995976686,193.34999664098" />
         <NodeLayout
           Size="144,42.6666666666667"
           Id="Package\EST_ETL_Log"
-          TopLeft="111.874998332933,214.499996164441" />
+          TopLeft="219.999996721745,293.799994746447" />
         <NodeLayout
           Size="204,42.6666666666667"
           Id="Package\EST_MaxLastModifiedDate"
-          TopLeft="108.124998388812,291.849994781316" />
+          TopLeft="189.374997178093,29.2499994769699" />
         <NodeLayout
           Size="276,42.6666666666667"
           Id="Package\Execute SQL Task_DeleteLendingQB_STG"
-          TopLeft="48.7499992735684,56.5499989888068" />
+          TopLeft="218.749996740371,116.349997919499" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="183.874998332933,257.166662831108">
+          TopLeft="291.374997178093,71.9166661436366">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="26.2500000558789,34.6833319502077"
+              EndConnector="65.3749995622784,44.4333317758629"
               Start="0,0"
-              End="26.2500000558789,27.1833319502077">
+              End="65.3749995622784,36.9333317758629">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.3416659751039" />
+                    End="0,18.2166658879314" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.3416659751039"
-                    Point2="0,17.3416659751039"
-                    Point3="4,17.3416659751039" />
+                    Point1="0,18.2166658879314"
+                    Point2="0,22.2166658879314"
+                    Point3="4,22.2166658879314" />
                   <mssgle:LineSegment
-                    End="22.2500000558789,17.3416659751039" />
+                    End="61.3749995622784,22.2166658879314" />
                   <mssgle:CubicBezierSegment
-                    Point1="22.2500000558789,17.3416659751039"
-                    Point2="26.2500000558789,17.3416659751039"
-                    Point3="26.2500000558789,21.3416659751039" />
+                    Point1="61.3749995622784,22.2166658879314"
+                    Point2="65.3749995622784,22.2166658879314"
+                    Point3="65.3749995622784,26.2166658879314" />
                   <mssgle:LineSegment
-                    End="26.2500000558789,27.1833319502077" />
+                    End="65.3749995622784,36.9333317758629" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14281,18 +14371,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="187.562498840503,99.2166656554734">
+          TopLeft="354.124996358529,159.016664586166">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,33.683332066437"
+              EndConnector="0,34.3333320548136"
               Start="0,0"
-              End="0,26.183332066437">
+              End="0,26.8333320548136">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.183332066437" />
+                    End="0,26.8333320548136" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14303,18 +14393,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="186.124998370185,175.566664388577">
+          TopLeft="351.499995976686,236.016663307646">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.9333317758646"
+              EndConnector="-59.4999992549412,57.7833314388002"
               Start="0,0"
-              End="0,31.4333317758646">
+              End="-59.4999992549412,50.2833314388002">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.4333317758646" />
+                    End="0,24.8916657194001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.8916657194001"
+                    Point2="0,28.8916657194001"
+                    Point3="-4,28.8916657194001" />
+                  <mssgle:LineSegment
+                    End="-55.4999992549412,28.8916657194001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-55.4999992549412,28.8916657194001"
+                    Point2="-59.4999992549412,28.8916657194001"
+                    Point3="-59.4999992549412,32.8916657194001" />
+                  <mssgle:LineSegment
+                    End="-59.4999992549412,50.2833314388002" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14330,7 +14432,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="164,42.6666666666667"
           Id="Package.EventHandlers[OnError]\Execute SQL Task"
@@ -14370,7 +14472,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -14501,7 +14605,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="54.2990212395783,5,22.901953125,11.2822265625"
+              BoundingBox="54.2990212395785,5,22.901953125,11.2822265625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14580,39 +14684,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task.EventHandlers[OnError]\Email missingfile notification"
+          TopLeft="657,202" />
+        <NodeLayout
           Size="149.333333333334,42.6666666666667"
           Id="Package\Data Flow Task.EventHandlers[OnError]\EST_Error_Log"
           TopLeft="519,56" />
-        <NodeLayout
-          Size="176,42.6666666666667"
-          Id="Package\Data Flow Task.EventHandlers[OnError]\ST_EmailNotification"
-          TopLeft="565,184" />
         <EdgeLayout
           Id="Package\Data Flow Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
           TopLeft="593.666666666667,98.6666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="59.3333333333334,85.3333333333333"
+              EndConnector="170,103.333333333333"
               Start="0,0"
-              End="59.3333333333334,77.8333333333333">
+              End="170,95.8333333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.6666666666667" />
+                    End="0,47.6666666666667" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,38.6666666666667"
-                    Point2="0,42.6666666666667"
-                    Point3="4,42.6666666666667" />
+                    Point1="0,47.6666666666667"
+                    Point2="0,51.6666666666667"
+                    Point3="4,51.6666666666667" />
                   <mssgle:LineSegment
-                    End="55.3333333333334,42.6666666666667" />
+                    End="166,51.6666666666667" />
                   <mssgle:CubicBezierSegment
-                    Point1="55.3333333333334,42.6666666666667"
-                    Point2="59.3333333333334,42.6666666666667"
-                    Point3="59.3333333333334,46.6666666666667" />
+                    Point1="166,51.6666666666667"
+                    Point2="170,51.6666666666667"
+                    Point3="170,55.6666666666667" />
                   <mssgle:LineSegment
-                    End="59.3333333333334,77.8333333333333" />
+                    End="170,95.8333333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
