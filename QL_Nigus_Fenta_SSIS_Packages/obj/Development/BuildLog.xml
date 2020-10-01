@@ -2,38 +2,38 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>QL_Nigus_Fenta_SSIS_Packages</Name>
-    <LastWriteTime>2020-09-28T18:40:36.0609154Z</LastWriteTime>
+    <LastWriteTime>2020-10-01T03:46:49.6205601Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
-      <Name>Pkg_Nigus_Fenta_LendingWise.dtsx</Name>
-      <LastWriteTime>2020-08-20T17:21:19.2344903Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_LendingQB.dtsx</Name>
-      <LastWriteTime>2020-09-27T17:45:48.8490018Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
-      <Name>Pkg_Nigus_Fenta_SimpleNexus.dtsx</Name>
-      <LastWriteTime>2020-08-20T17:26:19.2187412Z</LastWriteTime>
+      <LastWriteTime>2020-10-01T03:59:36.4366051Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_LendingPad.dtsx</Name>
-      <LastWriteTime>2020-09-28T19:35:08.0091238Z</LastWriteTime>
+      <LastWriteTime>2020-10-01T04:38:16.332782Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_QuickenLoan.dtsx</Name>
-      <LastWriteTime>2020-09-28T21:41:28.611585Z</LastWriteTime>
+      <LastWriteTime>2020-10-01T03:59:34.1089991Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_UberWriter.dtsx</Name>
-      <LastWriteTime>2020-09-28T19:49:21.7386208Z</LastWriteTime>
+      <LastWriteTime>2020-10-01T03:59:36.4116729Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Pkg_Nigus_Fenta_SimpleNexus.dtsx</Name>
+      <LastWriteTime>2020-10-01T03:42:17.6332375Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Pkg_Nigus_Fenta_Quicken_Loan_Master.dtsx</Name>
+      <LastWriteTime>2020-10-01T03:55:39.2297085Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
