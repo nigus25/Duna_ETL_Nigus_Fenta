@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Duna.database.windows.net.UberWriter"
+  DTS:DTSID="{F7667732-E9BE-4BF2-A3F4-BBF14A27EA61}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=Duna.database.windows.net;User ID=UberWriter;Initial Catalog=UberWriter;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAACAAAAAAAQZgAAAAEAACAAAAAfmrQXy9TY1rhrv986G1wX9hom8sEZ7R5MMdvpAphqfAAAAAAOgAAAAAIAACAAAACOfOw3XMkAKrq8G47Fbc/+PIyJpQPpo1/F3U5yAPlIU4AAAACJPMQjNFALcjekd6mwptabuk+k5TVmoOV1pKuqtPcyuwxkDLqOhW1l7Xwk4iwzKCoJ+/Y1FZnHSkj+J6xf67Uu/PXI4/ZrKdF+H3zE4v3slt6izZke/YVmofSSyKst6M406kZAp4mNz89lfRyv5920wuEQDtJdCmMyklIBlei5XUAAAACMX4e+ZIC0Nyszlzm5sVrs61EYyxg5ltcGlSdUAhZ1lBQBQztaYzxYt34gPPUGhvz9Se2wvg0q+MzxiVDpNzvy</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

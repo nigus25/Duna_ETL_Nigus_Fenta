@@ -2,33 +2,33 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>QL_Nigus_Fenta_SSIS_Packages</Name>
-    <LastWriteTime>2020-10-01T03:46:49.6205601Z</LastWriteTime>
+    <LastWriteTime>2020-10-01T18:56:25.7372368Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_LendingQB.dtsx</Name>
-      <LastWriteTime>2020-10-01T03:59:36.4366051Z</LastWriteTime>
+      <LastWriteTime>2020-10-02T01:17:30.1741219Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_LendingPad.dtsx</Name>
-      <LastWriteTime>2020-10-01T04:38:16.332782Z</LastWriteTime>
+      <LastWriteTime>2020-10-02T01:46:11.0375836Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_QuickenLoan.dtsx</Name>
-      <LastWriteTime>2020-10-01T03:59:34.1089991Z</LastWriteTime>
+      <LastWriteTime>2020-10-02T02:28:30.9773715Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_UberWriter.dtsx</Name>
-      <LastWriteTime>2020-10-01T03:59:36.4116729Z</LastWriteTime>
+      <LastWriteTime>2020-10-02T00:06:40.5317187Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_SimpleNexus.dtsx</Name>
-      <LastWriteTime>2020-10-01T03:42:17.6332375Z</LastWriteTime>
+      <LastWriteTime>2020-10-02T00:10:43.7701969Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>

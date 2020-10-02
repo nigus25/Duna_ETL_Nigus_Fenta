@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Pkg_Nigus_Fenta_QuickenLoan"
   DTS:PackageType="5"
-  DTS:VersionBuild="146"
-  DTS:VersionGUID="{35A61909-1901-4FBA-90EA-1EC55EF3889A}">
+  DTS:VersionBuild="165"
+  DTS:VersionGUID="{33D6B40B-D11F-4381-891F-BDAC513F17E0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -64,7 +64,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="varLastModifiedDate">
       <DTS:VariableValue
-        DTS:DataType="7">9/22/2020 6:44:40 PM</DTS:VariableValue>
+        DTS:DataType="7">9/22/2020 6:44:00 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -73,20 +73,20 @@
       DTS:Namespace="User"
       DTS:ObjectName="varLoadDate">
       <DTS:VariableValue
-        DTS:DataType="7">9/19/2020 1:46:49 PM</DTS:VariableValue>
+        DTS:DataType="7">9/19/2020 1:46:00 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{495C4D7C-BDD1-4366-BD42-B180B85C53DA}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT MAX(LastModifiedDate) as MaxLastModifiedDate&#xA;FROM [dbo].[Stg_Nigus_Fenta_QL]&#xA;Where SourceName = 'QuickenLoan'&quot;"
+      DTS:Expression="&quot;SELECT MAX(LastModifiedDate) as MaxLastModifiedDate  &#xA;FROM [dbo].[Stg_Nigus_Fenta_QL]&#xA; Where SourceName = &quot;+ &quot;?&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="varMaxLastModifiedDate">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT MAX(LastModifiedDate) as MaxLastModifiedDate
+        DTS:DataType="8">SELECT MAX(LastModifiedDate) as MaxLastModifiedDate  
 FROM [dbo].[Stg_Nigus_Fenta_QL]
-Where SourceName = 'QuickenLoan'</DTS:VariableValue>
+ Where SourceName = ?</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -115,7 +115,7 @@ Where SourceName = 'QuickenLoan'</DTS:VariableValue>
       DTS:Namespace="User"
       DTS:ObjectName="varRunTime">
       <DTS:VariableValue
-        DTS:DataType="7">9/30/2020 11:57:59 PM</DTS:VariableValue>
+        DTS:DataType="7">10/1/2020 10:28:31 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -210,6 +210,7 @@ Where SourceName = 'QuickenLoan'</DTS:VariableValue>
               DTS:refId="Package\Data Flow Task.EventHandlers[OnError]\Email missingfile notification"
               DTS:CreationName="Microsoft.ScriptTask"
               DTS:Description="Script Task"
+              DTS:Disabled="True"
               DTS:DTSID="{41C100CE-CECC-4859-B3EE-8701FD414073}"
               DTS:ExecutableType="Microsoft.ScriptTask"
               DTS:LocaleID="-1"
@@ -876,6 +877,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               DTS:refId="Package\Data Flow Task.EventHandlers[OnError]\EST_Error_Log"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
               DTS:DTSID="{DB6A7F0D-6ED3-44BA-B042-DC4E8D8BE588}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
@@ -2584,30 +2586,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      length="128"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]"
-                      name="C_MortgageInsuranceCompany"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(DT_STR,128,1252)(DT_WSTR,128)#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[MortgageInsuranceCompany__c]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(DT_STR,128,1252)(DT_WSTR,128)MortgageInsuranceCompany__c</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_Net_Buy_Price]"
                       dataType="numeric"
                       errorOrTruncationOperation="Computation"
@@ -2916,6 +2894,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
                           name="FriendlyExpression">(DT_STR,10,1252)(RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1000" ? "CHDT" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "9999" ? "CHXR" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1001" ? "CHDTA" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1002" ? "CHDB" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1003" ? "CHDC" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1004" ? "CHDD" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1005" ? "CHDE" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1006" ? "CHDF" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1007" ? "CHDG" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1008" ? "CHDH" : RIGHT(OfficeID__c,1) == "Z" &amp;&amp; LEFT(OfficeID__c,4) == "1009" ? "CHDI" : "CHDZ")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="128"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]"
+                      name="C_MortgageInsuranceCompany"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,128,1252)([ISNULL]((DT_WSTR,128)#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[MortgageInsuranceCompany__c]}) ? "Dunatek" : (DT_WSTR,128)#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[MortgageInsuranceCompany__c]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,128,1252)(ISNULL((DT_WSTR,128)MortgageInsuranceCompany__c) ? "Dunatek" : (DT_WSTR,128)MortgageInsuranceCompany__c)</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -8055,6 +8057,136 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           typeConverter="tcComparisonFlagsEx">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Inputs[Fuzzy Lookup Input].Columns[DocumentPreparedDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DocumentPreparedDate__c"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[DocumentPreparedDate__c]">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Name of the reference table column with which the input column should be matched."
+                          name="JoinToReferenceColumn"
+                          state="escaped" />
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the match is a fuzzy or an exact match."
+                          name="JoinType"
+                          typeConverter="tcJoinType">2</property>
+                        <property
+                          dataType="System.Single"
+                          description="Specifies the minimum textual similarity required between input and fuzzy matched records on values in this particular join column.  Must be a floating point value between 0.0 and 1.0."
+                          name="MinSimilarity">0</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Specifies the comparison options for character data. The options are those supported by the FoldString function."
+                          name="FuzzyComparisonFlags"
+                          typeConverter="tcComparisonFlags">1</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Flags to FoldString that should be used when comparing whether two strings are equivalent."
+                          name="FuzzyComparisonFlagsEx"
+                          typeConverter="tcComparisonFlagsEx">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Inputs[Fuzzy Lookup Input].Columns[DocumentResubmittedDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DocumentResubmittedDate__c"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[DocumentResubmittedDate__c]">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Name of the reference table column with which the input column should be matched."
+                          name="JoinToReferenceColumn"
+                          state="escaped" />
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the match is a fuzzy or an exact match."
+                          name="JoinType"
+                          typeConverter="tcJoinType">2</property>
+                        <property
+                          dataType="System.Single"
+                          description="Specifies the minimum textual similarity required between input and fuzzy matched records on values in this particular join column.  Must be a floating point value between 0.0 and 1.0."
+                          name="MinSimilarity">0</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Specifies the comparison options for character data. The options are those supported by the FoldString function."
+                          name="FuzzyComparisonFlags"
+                          typeConverter="tcComparisonFlags">1</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Flags to FoldString that should be used when comparing whether two strings are equivalent."
+                          name="FuzzyComparisonFlagsEx"
+                          typeConverter="tcComparisonFlagsEx">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Inputs[Fuzzy Lookup Input].Columns[QAStatus__c]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="QAStatus__c"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[QAStatus__c]">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Name of the reference table column with which the input column should be matched."
+                          name="JoinToReferenceColumn"
+                          state="escaped" />
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the match is a fuzzy or an exact match."
+                          name="JoinType"
+                          typeConverter="tcJoinType">2</property>
+                        <property
+                          dataType="System.Single"
+                          description="Specifies the minimum textual similarity required between input and fuzzy matched records on values in this particular join column.  Must be a floating point value between 0.0 and 1.0."
+                          name="MinSimilarity">0</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Specifies the comparison options for character data. The options are those supported by the FoldString function."
+                          name="FuzzyComparisonFlags"
+                          typeConverter="tcComparisonFlags">1</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Flags to FoldString that should be used when comparing whether two strings are equivalent."
+                          name="FuzzyComparisonFlagsEx"
+                          typeConverter="tcComparisonFlagsEx">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Inputs[Fuzzy Lookup Input].Columns[BorrGender__c]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="BorrGender__c"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[BorrGender__c]">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Name of the reference table column with which the input column should be matched."
+                          name="JoinToReferenceColumn"
+                          state="escaped" />
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the match is a fuzzy or an exact match."
+                          name="JoinType"
+                          typeConverter="tcJoinType">2</property>
+                        <property
+                          dataType="System.Single"
+                          description="Specifies the minimum textual similarity required between input and fuzzy matched records on values in this particular join column.  Must be a floating point value between 0.0 and 1.0."
+                          name="MinSimilarity">0</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Specifies the comparison options for character data. The options are those supported by the FoldString function."
+                          name="FuzzyComparisonFlags"
+                          typeConverter="tcComparisonFlags">1</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Flags to FoldString that should be used when comparing whether two strings are equivalent."
+                          name="FuzzyComparisonFlagsEx"
+                          typeConverter="tcComparisonFlagsEx">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -8389,6 +8521,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
                           name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[BorrFirstName__c]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the column is used to indicate confidence or similarity."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[BorrGender__c]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[BorrGender__c]"
+                      name="BorrGender__c">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the reference table column that is copied to the output for each match result."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[BorrGender__c]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -8770,6 +8926,52 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
                           name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[DisbursementDate__c]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the column is used to indicate confidence or similarity."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[DocumentPreparedDate__c]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[DocumentPreparedDate__c]"
+                      name="DocumentPreparedDate__c">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the reference table column that is copied to the output for each match result."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[DocumentPreparedDate__c]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the column is used to indicate confidence or similarity."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[DocumentResubmittedDate__c]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[DocumentResubmittedDate__c]"
+                      name="DocumentResubmittedDate__c">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the reference table column that is copied to the output for each match result."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[DocumentResubmittedDate__c]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -9906,6 +10108,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
                           name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[QAFailDate__c]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the column is used to indicate confidence or similarity."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[QAStatus__c]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[QAStatus__c]"
+                      name="QAStatus__c">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the reference table column that is copied to the output for each match result."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[QAStatus__c]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -11623,6 +11849,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                       </properties>
                     </outputColumn>
                     <outputColumn
+                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[_Similarity_C_MortgageInsuranceCompany]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[_Similarity_C_MortgageInsuranceCompany]"
+                      name="_Similarity_C_MortgageInsuranceCompany">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the reference table column that is copied to the output for each match result."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies whether the column is used to indicate confidence or similarity."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">3</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
                       refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[MarketSourceName]"
                       codePage="1252"
                       dataType="str"
@@ -11696,54 +11945,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           description="Specifies whether the column is used to indicate confidence or similarity."
                           name="ColumnType"
                           typeConverter="tcColumnType">2</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[_Similarity_C_MortgageInsuranceCompany]"
-                      dataType="r4"
-                      description="Column-level similarity score for fuzzy join on column &quot;C_MortgageInsuranceCompany&quot;."
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[_Similarity_C_MortgageInsuranceCompany]"
-                      name="_Similarity_C_MortgageInsuranceCompany">
-                      <properties>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the reference table column that is copied to the output for each match result."
-                          name="CopyFromReferenceColumn"
-                          state="escaped" />
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]}</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies whether the column is used to indicate confidence or similarity."
-                          name="ColumnType"
-                          typeConverter="tcColumnType">3</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[C_MortgageInsuranceCompany]"
-                      dataType="r4"
-                      description="Column-level similarity score for fuzzy join on column &quot;C_MortgageInsuranceCompany&quot;."
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[C_MortgageInsuranceCompany]"
-                      name="C_MortgageInsuranceCompany">
-                      <properties>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the reference table column that is copied to the output for each match result."
-                          name="CopyFromReferenceColumn"
-                          state="escaped" />
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[C_MortgageInsuranceCompany]}</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies whether the column is used to indicate confidence or similarity."
-                          name="ColumnType"
-                          typeConverter="tcColumnType">3</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -12365,12 +12566,6 @@ where [refTable].[MarketSourceCode] = ?</property>
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MilestoneStatus]"
                       lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[C_MilestoneStatus]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[C_MortgageInsuranceCompany]"
-                      cachedDataType="r4"
-                      cachedName="C_MortgageInsuranceCompany"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MortgageInsuranceCompany]"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[C_MortgageInsuranceCompany]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[C_Net_Buy_Price]"
                       cachedDataType="numeric"
                       cachedName="C_Net_Buy_Price"
@@ -12483,12 +12678,6 @@ where [refTable].[MarketSourceCode] = ?</property>
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnderwriterRiskAssess]"
                       lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[C_UnderwriterRiskAssess]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_Similarity]"
-                      cachedDataType="r4"
-                      cachedName="_Similarity"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadBy]"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[_Similarity]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ActualClosingDate__c]"
                       cachedDataType="dbTimeStamp"
                       cachedName="ActualClosingDate__c"
@@ -12512,13 +12701,6 @@ where [refTable].[MarketSourceCode] = ?</property>
                       cachedName="ApplicationStartedDate__c"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApplicationStartedDate]"
                       lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[ApplicationStartedDate__c]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ApprovalStatus__c]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="ApprovalStatus__c"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalDate]"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[ApprovalStatus__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClosingDisclosureRecievedDate__c]"
                       cachedDataType="dbTimeStamp"
@@ -12646,12 +12828,6 @@ where [refTable].[MarketSourceCode] = ?</property>
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeadDate]"
                       lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[LeadDate__c]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LockExpireDate__c]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="LockExpireDate__c"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanExpirationDate]"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[LockExpireDate__c]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoanInformationDocumentDate__c]"
                       cachedDataType="dbDate"
                       cachedName="LoanInformationDocumentDate__c"
@@ -12701,6 +12877,36 @@ where [refTable].[MarketSourceCode] = ?</property>
                       cachedName="C_InsuranceCompany"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsuranceCompany]"
                       lineageId="Package\Data Flow Task\Derived Column_IC.Outputs[Derived Column Output].Columns[C_InsuranceCompany]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ApprovalDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ApprovalDate__c"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalDate]"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[ApprovalDate__c]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DocumentPreparedDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DocumentPreparedDate__c"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DocumentPreparedDate]"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[DocumentPreparedDate__c]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DocumentResubmittedDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DocumentResubmittedDate__c"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DocumentResubmittedDate]"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[DocumentResubmittedDate__c]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoanExpirationDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LoanExpirationDate__c"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanExpirationDate]"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[LoanExpirationDate__c]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LockExpireDate__c]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LockExpireDate__c"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LockExpireDate]"
+                      lineageId="Package\Data Flow Task\Fuzzy Lookup_MIC.Outputs[Fuzzy Lookup Output].Columns[LockExpireDate__c]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -13623,6 +13829,25 @@ where [refTable].[MarketSourceCode] = ?</property>
                       name="ConditionsReceivedDate__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[CreatedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[CreatedById]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[CreatedById]"
+                      name="CreatedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[CreatedDate]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[CreditPullDate__c]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
@@ -13791,6 +14016,16 @@ where [refTable].[MarketSourceCode] = ?</property>
                       name="HouseOnSaleZip__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[Id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[Id]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[InitialClosingDisclosureSentDate__c]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
@@ -13869,6 +14104,24 @@ where [refTable].[MarketSourceCode] = ?</property>
                       name="IsConstructionLoan__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastActivityDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[LastActivityDate]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastActivityDate]"
+                      name="LastActivityDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastLoadDate__c]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
@@ -13878,6 +14131,25 @@ where [refTable].[MarketSourceCode] = ?</property>
                       name="LastLoadDate__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[LastModifiedById]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastModifiedById]"
+                      name="LastModifiedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[LastModifiedDate]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastModifiedDate__c]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
@@ -13885,6 +14157,24 @@ where [refTable].[MarketSourceCode] = ?</property>
                       externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[LastModifiedDate__c]"
                       lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastModifiedDate__c]"
                       name="LastModifiedDate__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastReferencedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[LastReferencedDate]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastReferencedDate]"
+                      name="LastReferencedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastViewedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[LastViewedDate]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LastViewedDate]"
+                      name="LastViewedDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[LeadDate__c]"
@@ -14100,6 +14390,16 @@ where [refTable].[MarketSourceCode] = ?</property>
                       name="MortgageInsuranceCompany__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[Name]"
+                      length="80"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[NetBuyPrice__c]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
@@ -14130,6 +14430,16 @@ where [refTable].[MarketSourceCode] = ?</property>
                       name="OriginationFee__c"
                       precision="17"
                       scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[OwnerId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[OwnerId]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[OwnerId]"
+                      name="OwnerId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[ProcessingDate__c]"
@@ -14168,6 +14478,15 @@ where [refTable].[MarketSourceCode] = ?</property>
                       length="100"
                       lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[QAStatus__c]"
                       name="QAStatus__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].ExternalColumns[SystemModstamp]"
+                      lineageId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[SystemModstamp]"
+                      name="SystemModstamp"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task\Salesforce Source.Outputs[Salesforce Source Output].Columns[TopQualificationRatios__c]"
@@ -14757,7 +15076,6 @@ where [refTable].[MarketSourceCode] = ?</property>
       DTS:refId="Package\EST_DeleteQuickenLoan_STG"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{8021B932-B949-4C33-AFEB-16707BB4760A}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -14793,7 +15111,7 @@ where [refTable].[MarketSourceCode] = ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A8AAFEFD-F6DC-42B5-A511-213E613A7F10}"
-          SQLTask:SqlStatementSource="INSERT INTO [dbo].[QL_Nigus_Fenta_ETL_Log]([PackageID]&#xA;      ,[PackageName]&#xA;      ,[SourceName]&#xA;      ,[RunTime]&#xA;      ,[RunBy]&#xA;      ,[NumberOfRowsInsrted]&#xA;      ,[MaxLastModifiedDate]&#xA;&#x9;  )&#xA;VALUES (?,?,?,?,?,?,?)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[QL_Nigus_Fenta_ETL_Log](&#xA;     [PackageID]&#xA;      ,[PackageName]&#xA;      ,[SourceName]&#xA;      ,[RunTime]&#xA;      ,[RunBy]&#xA;      ,[NumberofRowSet]&#xA;      ,[MaxLastModifiedDate]&#xA;&#x9;  )&#xA;VALUES (?,?,?,?,?,?,?)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="System::PackageID"
@@ -14843,7 +15161,6 @@ where [refTable].[MarketSourceCode] = ?</property>
       DTS:refId="Package\EST_MaxLastModifiedDate"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{AF9DA21D-315B-4615-ACFD-5413847FC8EE}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -14876,6 +15193,7 @@ where [refTable].[MarketSourceCode] = ?</property>
               DTS:refId="Package\EST_MaxLastModifiedDate.EventHandlers[OnError]\Execute SQL Task"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
+              DTS:Disabled="True"
               DTS:DTSID="{AA70A4C0-8D5B-4C8B-BE38-4F0CC378F2C7}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
@@ -14890,6 +15208,7 @@ where [refTable].[MarketSourceCode] = ?</property>
               DTS:refId="Package\EST_MaxLastModifiedDate.EventHandlers[OnError]\Script Task"
               DTS:CreationName="Microsoft.ScriptTask"
               DTS:Description="Script Task"
+              DTS:Disabled="True"
               DTS:DTSID="{904E1494-5335-4A41-A1C3-E687579E1091}"
               DTS:ExecutableType="Microsoft.ScriptTask"
               DTS:LocaleID="-1"
@@ -15555,10 +15874,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           SQLTask:SqlStatementSource="User::varMaxLastModifiedDate"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
-            SQLTask:ResultName="SourceName"
-            SQLTask:DtsVariableName="User::varSourceName" />
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="LastModifiedDate"
+            SQLTask:ResultName="0"
             SQLTask:DtsVariableName="User::varLastModifiedDate" />
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -15621,7 +15937,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           DTS:refId="Package.EventHandlers[OnError]\Execute SQL Task"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{019D108F-A49E-4A3C-9072-237D0272D2CE}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -15681,7 +15996,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           DTS:refId="Package.EventHandlers[OnError]\Script Task"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
-          DTS:Disabled="True"
           DTS:DTSID="{7F6657A3-313C-46E8-A1A3-C5A980094532}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
@@ -15733,18 +16047,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\EST_ETL_Log"
           TopLeft="219.999996721745,293.799994746447" />
         <NodeLayout
-          Size="204,42.6666666666667"
+          Size="209.333333333334,42.6666666666667"
           Id="Package\EST_MaxLastModifiedDate"
           TopLeft="189.374997178093,29.2499994769699" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="291.374997178093,71.9166661436366">
+          TopLeft="294.04166384476,71.9166661436366">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="41.374999562278,44.4333317758625"
+              EndConnector="38.7083328956113,44.4333317758625"
               Start="0,0"
-              End="41.374999562278,36.9333317758625">
+              End="38.7083328956113,36.9333317758625">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -15755,13 +16069,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                     Point2="0,22.2166658879312"
                     Point3="4,22.2166658879312" />
                   <mssgle:LineSegment
-                    End="37.374999562278,22.2166658879312" />
+                    End="34.7083328956113,22.2166658879312" />
                   <mssgle:CubicBezierSegment
-                    Point1="37.374999562278,22.2166658879312"
-                    Point2="41.374999562278,22.2166658879312"
-                    Point3="41.374999562278,26.2166658879312" />
+                    Point1="34.7083328956113,22.2166658879312"
+                    Point2="38.7083328956113,22.2166658879312"
+                    Point3="38.7083328956113,26.2166658879312" />
                   <mssgle:LineSegment
-                    End="41.374999562278,36.9333317758625" />
+                    End="38.7083328956113,36.9333317758625" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15897,21 +16211,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="259.374996135011,214.499996164441" />
-        <NodeLayout
           Size="154.666666666667,42.6666666666667"
           Id="Package\Data Flow Task\Derived Column"
           TopLeft="254.999996200203,33.7315787711252" />
         <NodeLayout
-          Size="173.333333333334,42.6666666666667"
-          Id="Package\Data Flow Task\Derived Column_IC"
-          TopLeft="1.87499997206028,124.799997768402" />
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\Salesforce Source"
+          TopLeft="24.3749996367842,31.438597057885" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="259.374996135011,214.499996164441" />
         <NodeLayout
           Size="131.333333333334,42.6666666666667"
           Id="Package\Data Flow Task\Row Count"
           TopLeft="15.6249997671695,215.799996141195" />
+        <NodeLayout
+          Size="173.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task\Derived Column_IC"
+          TopLeft="1.87499997206028,124.799997768402" />
         <NodeLayout
           Size="216,42.6666666666667"
           Id="Package\Data Flow Task\Lookup_MarketSourceName"
@@ -15924,78 +16242,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Size="156,42.6666666666667"
           Id="Package\Data Flow Task\Conditional Split"
           TopLeft="503.74999249354,17.6526308614826" />
-        <NodeLayout
-          Size="166.666666666667,42.6666666666667"
-          Id="Package\Data Flow Task\Salesforce Source"
-          TopLeft="24.3749996367842,31.438597057885" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Salesforce Source Output]"
-          TopLeft="191.041666303451,53.9184212478384">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="63.9583298967521,0"
-              Start="0,0"
-              End="56.4583298967521,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="56.4583298967521,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Row Count Output 1]"
-          TopLeft="146.958333100503,236.483329486152">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="112.416663034508,0"
-              Start="0,0"
-              End="104.916663034508,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="104.916663034508,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="544.37499188818,151.008331014564">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-105.12499593012,0"
-              Start="0,0"
-              End="-97.62499593012,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-97.62499593012,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-97.00388468381,5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Keep]"
           TopLeft="581.74999249354,60.3192975281493">
@@ -16110,6 +16356,74 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Salesforce Source Output]"
+          TopLeft="191.041666303451,53.9184212478384">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63.9583298967521,0"
+              Start="0,0"
+              End="56.4583298967521,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="56.4583298967521,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Row Count Output 1]"
+          TopLeft="146.958333100503,236.483329486152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="112.416663034508,0"
+              Start="0,0"
+              End="104.916663034508,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="104.916663034508,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="544.37499188818,151.008331014564">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-105.12499593012,0"
+              Start="0,0"
+              End="-97.62499593012,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-97.62499593012,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-97.00388468381,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -16184,7 +16498,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
