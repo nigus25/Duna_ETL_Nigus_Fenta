@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Pkg_Nigus_Fenta_LendingPad"
   DTS:PackageType="5"
-  DTS:VersionBuild="230"
-  DTS:VersionGUID="{D4AD03D6-490A-4A1A-B3E3-BD033E59C280}">
+  DTS:VersionBuild="243"
+  DTS:VersionGUID="{3A770A58-2FB9-46DE-8EFB-C31A36F9C7B5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABUJ7RTW1E8S+JfIDGaQ284A71uVvCy9o+G+JRjxcBzagAAAAAOgAAAAAIAACAAAAAsVYTWOY6I/JZ8TvJJsRybJgysgL4VzWlt6d6pa2qwqSAAAAB0MD2OnPYnzblLz2mW4M8qi30HBFo83psb3c5o3QGzDkAAAAA+FkEyaR/A8vBNq4VeFuE7oB7qwX+jmmJR1ZN0q/WIZvJ6gUU2JKC3j/l0/ngXfb33ChG4gM1IKVscPxCrWNYS</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGVZPD2gsjUSCacbbnw36HgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABRD3muokPhChMEcR1XzX2nhrK/hAjs1s2ughDHoUIpPAAAAAAOgAAAAAIAACAAAAAObk0F2mkuvc5I/dEmtJba7BPkiTNpoqWHgYNAlyjVwiAAAAB/cD/WAWjMqWO+ZhtffcgVO0Nihh5Y7lsXsIp2xm31gUAAAAD8GnVVztW3vsSp4Wc3kRDZmu5TprE2tXVF6JE6vMaLWiMxwzPP2QIhfrRYbq+mEDtinJTbK5gDsTIYbxCIi/mb</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -114,7 +114,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="varArchiveFolder">
       <DTS:VariableValue
-        DTS:DataType="8">C:\QuicknLoan\ArchivedFolder\SimpleNexus.Zip2020-10-01-20:10.zip</DTS:VariableValue>
+        DTS:DataType="8">C:\QuicknLoan\ArchivedFolder\SimpleNexus.Zip2020-10-02-18:05.zip</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -203,11 +203,14 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{374673BB-4EF9-497C-A6FD-DE524862F79B}"
-      DTS:IncludeInDebugDump="6789"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT  MAX(LastModifiedDate) as MaxLastModifiedDate&#xA;FROM [dbo].[Stg_Nigus_Fenta_QL] where SourceName = 'SimpleNexus'&quot;"
+      DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="varMaxLastModifiedDate">
       <DTS:VariableValue
-        DTS:DataType="7">9/30/2020 10:20:39 PM</DTS:VariableValue>
+        DTS:DataType="8">SELECT  MAX(LastModifiedDate) as MaxLastModifiedDate
+FROM [dbo].[Stg_Nigus_Fenta_QL] where SourceName = 'SimpleNexus'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -245,7 +248,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="varRunTime">
       <DTS:VariableValue
-        DTS:DataType="7">10/1/2020 8:10:46 PM</DTS:VariableValue>
+        DTS:DataType="7">10/2/2020 6:05:49 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1211,13 +1214,14 @@ namespace ST_e1b202c48928497eaf96a0de7030a717
             //MailMessage email = new MailMessage();
             //SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             // START
-           // System::PackageName,System::StartTime,User::VarFromEmail,User::varPassword,User::varSmtpClient,User::varSmtpServerPort,User::varSubject,User::VarToEmail
-              String SendMailFrom = Dts.Variables["User::VarFromEmail"].Value.ToString();
+            // ,,,,
+            //,,,
+            String SendMailFrom = Dts.Variables["User::varFromEmail"].Value.ToString();
             String SendMailTo = Dts.Variables["User::VarToEmail"].Value.ToString();
             String SendMailSubject = Dts.Variables["User::varSubject"].Value.ToString();
             //String SendMailBody = Dts.Variables["User::varBody"].Value.ToString();
             String SendMailBody = Dts.Variables["System::PackageName"].Value.ToString() + " " + Dts.Variables["User::varBody"].Value.ToString() + Dts.Variables["System::StartTime"].Value.ToString();
-            String SmtpClient = Dts.Variables["User::varSmtpClient"].Value.ToString();
+            String SmtpClient = Dts.Variables["User::VarSMTPClient"].Value.ToString();
             String Password = Dts.Variables["User::varPassword"].Value.ToString();
             String Pt = Dts.Variables["User::varSmtpServerPort"].Value.ToString();
             int Port = int.Parse(Pt);
@@ -1352,7 +1356,7 @@ namespace ST_e1b202c48928497eaf96a0de7030a717
     <msb:CodeName>ST_e16fcec8fa11458f8c443dd0e175b598</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>ST_e16fcec8fa11458f8c443dd0e175b598</msb:DisplayName>
-    <msb:ProjectId>{5C097C9C-4F4B-4617-B10D-F4AD7370E5B5}</msb:ProjectId>
+    <msb:ProjectId>{BB754696-2ECE-42ED-83E9-6A703CD6EF62}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="ST_e16fcec8fa11458f8c443dd0e175b598.csproj" />
@@ -1494,7 +1498,7 @@ namespace ST_e1b202c48928497eaf96a0de7030a717.Properties {
           <BinaryItem
             Name="ST_e16fcec8fa11458f8c443dd0e175b598.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAG74a18AAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAvjIA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDADKkd18AAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAvjIA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGwyAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1531,7 +1535,7 @@ ACIETAB5AKMEUwAJAYgAEAB5ABAGEAB5AIYGEAD5AFoGAQARAcoEWQD5ALMFXwD5AAQEZgD5AIwA
 awAhAXYGcQDRAEAGAQBxAMoEBgCZAMoEBgAxAcgAeAAxAY8GgQChAMoEhwDBAMoEBgAIAAgAoQAI
 AAwApgApAHMADgEuAAsA5gAuABMA7wAuABsADgEuACMAFwEuACsAQAEuADMAQAEuADsAQAEuAEMA
 FwEuAEsARgEuAFMAQAEuAFsAXQFDAGMApgBJAHMADgGDAGsApgDBAHsApgAbAAQAAQAFAAMAAAC6
-BNcAAAAnAdwAAAArBuEAAgAEAAMAAgAFAAUAAQAGAAUAAgAHAAcABIAAAAEAAACTHReYAAAAAAAA
+BNcAAAAnAdwAAAArBuEAAgAEAAMAAgAFAAUAAQAGAAUAAgAHAAcABIAAAAEAAACcHTh/AAAAAAAA
 KwAAAAQAAAAAAAAAAAAAAI8AfwAAAAAADwAAAAAAAAAAAAAAmABKAwAAAAAEAAAAAAAAAAAAAACP
 ABsEAAAAAA8AAAAAAAAAAAAAAJgAWAAAAAAABAAAAAAAAAAAAAAAjwDDBQAAAAAAAAAAAQAAABsF
 AAAAAAAAAEludDMyAFNUX2UxYjIwMmM0ODkyODQ5N2VhZjk2YTBkZTcwMzBhNzE3AFNUX2UxNmZj
@@ -1564,16 +1568,16 @@ eXN0ZW0uV2luZG93cy5Gb3JtcwBTdWNjZXNzAE1haWxBZGRyZXNzAGdldF9EdHMAU2NyaXB0UmVz
 dWx0cwBDb25jYXQAT2JqZWN0AHNldF9TdWJqZWN0AFN5c3RlbS5OZXQAZ2V0X0RlZmF1bHQARGlh
 bG9nUmVzdWx0AHNldF9UYXNrUmVzdWx0AFNtdHBDbGllbnQAc2V0X1BvcnQASUNyZWRlbnRpYWxz
 QnlIb3N0AFNob3cATWVzc2FnZUJveABzZXRfQm9keQBnZXRfQXNzZW1ibHkAACVVAHMAZQByADoA
-OgBWAGEAcgBGAHIAbwBtAEUAbQBhAGkAbAAAIVUAcwBlAHIAOgA6AFYAYQByAFQAbwBFAG0AYQBp
+OgB2AGEAcgBGAHIAbwBtAEUAbQBhAGkAbAAAIVUAcwBlAHIAOgA6AFYAYQByAFQAbwBFAG0AYQBp
 AGwAACFVAHMAZQByADoAOgB2AGEAcgBTAHUAYgBqAGUAYwB0AAAnUwB5AHMAdABlAG0AOgA6AFAA
 YQBjAGsAYQBnAGUATgBhAG0AZQAAAyAAABtVAHMAZQByADoAOgB2AGEAcgBCAG8AZAB5AAAjUwB5
-AHMAdABlAG0AOgA6AFMAdABhAHIAdABUAGkAbQBlAAAnVQBzAGUAcgA6ADoAdgBhAHIAUwBtAHQA
-cABDAGwAaQBlAG4AdAAAI1UAcwBlAHIAOgA6AHYAYQByAFAAYQBzAHMAdwBvAHIAZAAAL1UAcwBl
+AHMAdABlAG0AOgA6AFMAdABhAHIAdABUAGkAbQBlAAAnVQBzAGUAcgA6ADoAVgBhAHIAUwBNAFQA
+UABDAGwAaQBlAG4AdAAAI1UAcwBlAHIAOgA6AHYAYQByAFAAYQBzAHMAdwBvAHIAZAAAL1UAcwBl
 AHIAOgA6AHYAYQByAFMAbQB0AHAAUwBlAHIAdgBlAHIAUABvAHIAdAAAOUUAbQBhAGkAbAAgAHcA
 YQBzACAAUwB1AGMAYwBlAHMAcwBmAHUAbABsAHkAIABTAGUAbgB0ACAAAHFTAFQAXwBlADEAYgAy
 ADAAMgBjADQAOAA5ADIAOAA0ADkANwBlAGEAZgA5ADYAYQAwAGQAZQA3ADAAMwAwAGEANwAxADcA
-LgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAClK2NLJXsCQY6I6+3w
-UpmWAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFZCwcIDg4ODg4OCBI9BCAAEmkEIAASbQUgARJx
+LgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAADf59flFNuFQp+Yitxg
+CFZlAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFZCwcIDg4ODg4OCBI9BCAAEmkEIAASbQUgARJx
 HAMgABwDIAAOBwAEDg4ODg4EAAEIDgYgAQESgIEFIAASgIUFIAIBDg4GIAEBEoCNBCABAQIFIAEB
 Ej0GAAERgJUOCAABEoCZEYCdBSAAEoChByACAQ4SgKEIt3pcVhk04IkIiYRdzYCAzJEEAAAAAAQB
 AAAAAgYIAwYRDAMGElEDBhJVAwYSFAQAABJRBAAAElUFAAEBElUEAAASFAMAAAEECAASUQQIABJV
@@ -1593,14 +1597,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
 SAAAAFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
-AAAAvQTv/gAAAQAAAAEAF5iTHQAAAQAXmJMdPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAAAvQTv/gAAAQAAAAEAOH+cHQAAAQA4f5wdPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
 AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
 AAAAAAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAA
 MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBu
 AHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAA
 AABTAFQAXwBlADEAYgAyADAAMgBjADQAOAA5ADIAOAA0ADkANwBlAGEAZgA5ADYAYQAwAGQAZQA3
 ADAAMwAwAGEANwAxADcAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
-NwA1ADcAMQAuADMAOAA5ADMANQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABT
+NwA1ADgAMAAuADMAMgA1ADYAOAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABT
 AFQAXwBlADEANgBmAGMAZQBjADgAZgBhADEAMQA0ADUAOABmADgAYwA0ADQAMwBkAGQAMABlADEA
 NwA1AGIANQA5ADgALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAA
 AEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABUAHIA
@@ -1609,8 +1613,8 @@ AG0AZQAAAFMAVABfAGUAMQA2AGYAYwBlAGMAOABmAGEAMQAxADQANQA4AGYAOABjADQANAAzAGQA
 ZAAwAGUAMQA3ADUAYgA1ADkAOAAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBl
 AAAAAABTAFQAXwBlADEAYgAyADAAMgBjADQAOAA5ADIAOAA0ADkANwBlAGEAZgA5ADYAYQAwAGQA
 ZQA3ADAAMwAwAGEANwAxADcAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAx
-AC4AMAAuADcANQA3ADEALgAzADgAOQAzADUAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYA
-ZQByAHMAaQBvAG4AAAAxAC4AMAAuADcANQA3ADEALgAzADgAOQAzADUAAAAAAAAAAAAAAAAAAAAA
+AC4AMAAuADcANQA4ADAALgAzADIANQA2ADgAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYA
+ZQByAHMAaQBvAG4AAAAxAC4AMAAuADcANQA4ADAALgAzADIANQA2ADgAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -16885,7 +16889,8 @@ where [refTable].[MarketSourceCode] = ?</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{CA0E116B-E56A-46CD-83C6-35E3AC111DE3}"
-              SQLTask:SqlStatementSource="SELECT  MAX(LastModifiedDate) as MaxLastModifiedDate&#xA;FROM [dbo].[Stg_Nigus_Fenta_QL] where SourceName = 'SimpleNexus'"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::varMaxLastModifiedDate"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="0"
@@ -16897,7 +16902,6 @@ where [refTable].[MarketSourceCode] = ?</property>
           DTS:refId="Package\Sequence Container\ETL_Log"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{991CEF5A-C46F-4D81-BD61-4D2B9BCC3504}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -16908,7 +16912,50 @@ where [refTable].[MarketSourceCode] = ?</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{A8AAFEFD-F6DC-42B5-A511-213E613A7F10}"
-              SQLTask:SqlStatementSource="INSERT INTO [dbo].[QL_Nigus_Fenta_ETL_Log]([PackageID]&#xA;      ,[PackageName]&#xA;      ,[SourceName]&#xA;      ,[RunTime]&#xA;      ,[RunBy]&#xA;      ,[NumberOfRowsInsrted]&#xA;      ,[MaxLastModifiedDate]&#xA;&#x9;  )&#xA;VALUES (?,?,?,?,?,?,?)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[QL_Nigus_Fenta_ETL_Log]([PackageID]&#xA;      ,[PackageName]&#xA;      ,[SourceName]&#xA;      ,[RunTime]&#xA;      ,[RunBy]&#xA;      ,[NumberOfRowInserted]&#xA;      ,[MaxLastModifiedDate]&#xA;&#x9;  )&#xA;VALUES (?,?,?,?,?,?,?)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="72"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varRunTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::MachineName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varRowCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::varLastModifiedDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -17019,7 +17066,6 @@ where [refTable].[MarketSourceCode] = ?</property>
           DTS:refId="Package.EventHandlers[OnError]\Execute SQL Task"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:Disabled="True"
           DTS:DTSID="{35A082D8-5B41-4051-87DB-9877CC42C91D}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
@@ -17079,7 +17125,6 @@ where [refTable].[MarketSourceCode] = ?</property>
           DTS:refId="Package.EventHandlers[OnError]\Script Task"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
-          DTS:Disabled="True"
           DTS:DTSID="{7994CA2F-BC27-4E2E-8134-AB90ECD62C14}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
