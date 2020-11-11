@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{ACA14899-4EC1-493E-91E1-80ACFF84B7F4}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{D4F401AF-1EB6-4604-B6A8-17A3CFF7E74C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -120,10 +120,10 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="304,365.333333333334"
-          Size="304,408"
+          PanelSize="256,131.333333333334"
+          Size="256,174.666666666667"
           Id="Package\Foreach Loop Container"
-          TopLeft="377.499994374812,21.6666674007449" />
+          TopLeft="378.124994365499,20.7368401992353" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

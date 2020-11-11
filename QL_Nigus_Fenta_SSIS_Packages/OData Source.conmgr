@@ -1,16 +1,20 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="OData Source"
-  DTS:DTSID="{D295663C-B9B1-443F-ACC2-C0ADD368A175}"
+  DTS:DTSID="{761E2CCB-9565-463E-94FE-709E5C2B2CFE}"
   DTS:CreationName="ODATA">
   <DTS:PropertyExpression
-    DTS:Name="ConnectionString">@[$Project::ODataSource_ConnectionString]</DTS:PropertyExpression>
+    DTS:Name="Url">@[$Project::ODataSource_Url]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <ODataConnectionManager
       UserName="sharepoint@dunatk.com"
       Url="https://dunatkcom.sharepoint.com/sites/LendingQB/_vti_bin/listdata.svc"
-      ConnectionString="Service Document Url=https://dunatkcom.sharepoint.com/sites/LendingQB/_vti_bin/listdata.svc;Include Atom Elements=Auto;Include Expanded Entities=False;Integrated Security=False;Cookie=&quot;SPOIDCRL=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U1A+VjgsMGguZnxtZW1iZXJzaGlwfDEwMDMyMDAwNDUzOWU4OWZAbGl2ZS5jb20sMCMuZnxtZW1iZXJzaGlwfHNoYXJlcG9pbnRAZHVuYXRrLmNvbSwxMzI0NDc3MjU1MTAwMDAwMDAsMTMyNDIxNzU3MDQwMDAwMDAwLDEzMjQ0ODU4OTUxODkzOTM3NiwwLjAuMC4wLDQsODVkZGY3ZTktODA2OC00YmI2LTg5NzktNDQ3NjE0NDJlMzlhLCwsY2ZiNjdhOWYtNjBjYS0wMDAwLTQ3MTItYzA4Nzg4ZjY0OThhLGNmYjY3YTlmLTYwY2EtMDAwMC00NzEyLWMwODc4OGY2NDk4YSwsMCwwLDAsLCwsMjY1MDQ2Nzc0Mzk5OTk5OTk5OSwwLCxoUmdYSjRra080SGhON0tyT2N5aCt2L1U3OHhpV0I1djFSVG8rWlFqbkNvQS9xUmczZE5uNDM1Q1VGb09sa2h4bVlMRjlOTEhpUm9HUDZLQUtMNjBiejZEakN3L2JIdm0ydkxoV3p0OU5ERmhEakJpelR1ZXBUL1BUd1dsemlpMU1QaVdJcWJxWHdsR1VjeUl2QjJxMGR2ZEtZUy82c3V1cHB2bnVqeFM4SUR3Rm1iVUlqb1pLbmN5aVZXbGZVYm1IRWp3Mkc0UVVML1ZHVzZoVWRDZ1V6ZFJUVDdmM3plK29kM1dYMEJ6TW9PRXk4OGgvVXhNdGg5MDBSc0lOZHRiTmFCNUFYZUpLY1M5Yjl0M3JSVjYxeC84dm9qdzRiZTEzTU91a1MxTU1zM3FodkJrVTZSQVZvVHl0WmFzOHdMWUNYY0ZDTVp4dmEwVVJPUnRLUXludGc9PTwvU1A+&quot;;User ID=sharepoint@dunatk.com;Persist Security Info=False;Time Out=600;Schema Sample Size=25;Retry Count=5;Retry Sleep=100;Keep Alive=False;Max Received Message Size=4398046511104"
+      ConnectionString="Service Document Url=https://dunatkcom.sharepoint.com/sites/LendingQB/_vti_bin/listdata.svc;Include Atom Elements=Auto;Include Expanded Entities=False;Integrated Security=False;Cookie=&quot;SPOIDCRL=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U1A+VjgsMGguZnxtZW1iZXJzaGlwfDEwMDMyMDAwNDUzOWU4OWZAbGl2ZS5jb20sMCMuZnxtZW1iZXJzaGlwfHNoYXJlcG9pbnRAZHVuYXRrLmNvbSwxMzI0OTU4MTUxMTAwMDAwMDAsMTMyNDczNTAxMDAwMDAwMDAwLDEzMjQ5NjY3OTExMjg4NzExNiwwLjAuMC4wLDQsODVkZGY3ZTktODA2OC00YmI2LTg5NzktNDQ3NjE0NDJlMzlhLCwsZmVhMDhjOWYtYTAyMy0wMDAwLTgxNTctMTliZDIzMjk1N2I2LGZlYTA4YzlmLWEwMjMtMDAwMC04MTU3LTE5YmQyMzI5NTdiNiwsMCwwLDAsLCwsMjY1MDQ2Nzc0Mzk5OTk5OTk5OSwwLCxCVklkUmxTUUwzanRkOERzMG5tRCtzQncySytBd1RrYkZpaGFuWFFHaEppcndCazduU3M5UUJsUlE4WmZyQ3VGdTQ0S0d1TjlFcFR4K2N3a2V5clI2NS93WXR6VFJMUElDdmJBa0p5MDIzcHRGQ1lXMThuZTBpNUc3eVdkbTNhaEdRL3RieWIxbDczZGhuVGlQT1ZHOVNYWE1ITnY0aEVNaU5vWmNYNkhTU29LSWVNZXd0NThPU1UyTUVFMERpaHA1L2kwRmpuMmttN0ZNWktXNGl1SlRSUDZIT0M0OXR1R3ZLUlhrblVkSlJWY1ZHSXR6UHJhUzhhZGJwbzNTRUx0aEQzcktiZG5yRkpyTjRmaGNGc0xzQzA2bjFsRzBLNkpvaGNPTUg4QnNwbmNYekR1QTA3a0xGcDBRaXEvblNmaVh0YklsR05kZ2txTzZxbkVsMWYvZXc9PTwvU1A+&quot;;User ID=sharepoint@dunatk.com;Persist Security Info=False;Time Out=600;Schema Sample Size=25;Retry Count=5;Retry Sleep=100;Keep Alive=False;Max Received Message Size=4398046511104"
       MicrosoftOnlineServicesAuth="True"
-      AuthType="MicrosoftOnlineService" />
+      AuthType="MicrosoftOnlineService"
+      ConnectByProxy="False">
+      <Password
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAy38N4CVfv0q/tceJla1OEgAAAAACAAAAAAAQZgAAAAEAACAAAABj05cvBiUR0K2HYnUKfe1XQj0yqjlu5iaq9K1HxHNdigAAAAAOgAAAAAIAACAAAAAIaOXZ4cG17SDFzEOdXCwOHjU2jcSlj/NpG3EAvx9dikAAAABxxuhM72/RbekFmq7RQJfphNUfytXysAhKNpo4J5wI34gSjnZeClwdqTc0JJ0B9xLbvpC79j4/1rsA6+don4S8QAAAAER0UIN99hVaHEJboq4HBDyOYLeKdNDFXQpwbnAp91mC12cyZE3h4+8s+3ZL2Iv5Mu0MVAdi++cMXcYeW7Za3LU=</Password>
+    </ODataConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

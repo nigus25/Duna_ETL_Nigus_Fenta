@@ -2,38 +2,38 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>QL_Nigus_Fenta_SSIS_Packages</Name>
-    <LastWriteTime>2020-10-03T21:35:56.9480594Z</LastWriteTime>
+    <LastWriteTime>2020-11-11T15:20:03.7787408Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_LendingQB.dtsx</Name>
-      <LastWriteTime>2020-10-02T17:56:32.1197499Z</LastWriteTime>
+      <LastWriteTime>2020-11-11T15:38:19.2787467Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_LendingPad.dtsx</Name>
-      <LastWriteTime>2020-10-03T02:27:16.0936822Z</LastWriteTime>
+      <LastWriteTime>2020-11-09T04:27:08.7406152Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_QuickenLoan.dtsx</Name>
-      <LastWriteTime>2020-10-03T21:55:29.034682Z</LastWriteTime>
+      <LastWriteTime>2020-11-08T17:55:38.8725123Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_UberWriter.dtsx</Name>
-      <LastWriteTime>2020-10-03T15:24:19.0808058Z</LastWriteTime>
+      <LastWriteTime>2020-11-08T20:02:43.9141185Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_SimpleNexus.dtsx</Name>
-      <LastWriteTime>2020-10-03T16:02:58.4353802Z</LastWriteTime>
+      <LastWriteTime>2020-11-08T18:26:57.6779572Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Pkg_Nigus_Fenta_Quicken_Loan_Master.dtsx</Name>
-      <LastWriteTime>2020-10-03T15:58:25.8110354Z</LastWriteTime>
+      <LastWriteTime>2020-10-09T01:31:56.7749675Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
